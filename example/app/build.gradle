@@ -1,0 +1,133 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id "com.google.protobuf"
+}
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.id365.exampleapp"
+        minSdk 24
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs = ['-Xopt-in=kotlin.RequiresOptIn']
+    }
+    buildFeatures {
+        compose true
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.activity:activity-compose:1.3.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    implementation "androidx.navigation:navigation-compose:2.4.2"
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "com.id365.idverification:sdk:0.2.12"
+    protobuf(project(":protos"))
+}
+
+repositories {
+    maven {
+        url "https://gitlab.365id.com/api/v4/projects/105/packages/maven"
+        name "365id GitLab"
+        credentials(HttpHeaderCredentials) {
+            name = "Private-Token"
+            value = project.properties["gitlabPrivateToken"]
+        }
+        authentication {
+            header(HttpHeaderAuthentication)
+        }
+    }
+    maven {
+        name = "iProov Maven"
+        url = uri("https://raw.githubusercontent.com/iProov/android/master/maven/")
+    }
+    google()
+    mavenCentral()
+    mavenLocal()
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protobuf_version}"
+    }
+    plugins {
+        java {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpc_version}"
+        }
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpc_version}"
+        }
+        grpckt {
+            artifact = "io.grpc:protoc-gen-grpc-kotlin:${grpc_kotlin_version}:jdk8@jar"
+        }
+    }
+    generateProtoTasks {
+        all().forEach {
+            it.plugins {
+               java {
+                    option("lite")
+                }
+                grpc {
+                    option("lite")
+                }
+                grpckt {
+                    option("lite")
+                }
+            }
+            it.builtins {
+                kotlin {
+                    option("lite")
+                }
+            }
+        }
+    }
+}
