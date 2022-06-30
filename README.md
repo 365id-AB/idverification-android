@@ -101,7 +101,7 @@ Before being able to use the 365id Id Verification SDK, you will need a JWT toke
 
 The JWT token is valid for 3 minutes, after that you will have to refresh the token using the provided refresh token. In the [TokenRequester.kt](example\app\src\main\java\com\id365\exampleapp\TokenRequester.kt) file you can find how the example app retrieves its token using the license key.
 
-In a production app, it is recommended that you obtain the JWT token using a server-to-server call. The example app retrieves it directly for the sake of simplicity.
+> **⚠️ SECURITY NOTICE:**  In a production app, it is recommended that you obtain the JWT token using a server-to-server call. The example app retrieves it directly for the sake of simplicity.
 
 <br/>
 
@@ -122,9 +122,9 @@ when (status) {
 
     _365iDResult.StatusType.OK -> {
         // This is returned when a transaction completes successfully 
-        // Note: This does not mean the user identity or supplied document 
-        // is verified, only that the transaction process itself did not 
-        // end prematurely. The assessment shows a summary of the result
+        // Note: This does not mean the user identity or supplied document is verified, 
+        // only that the transaction process itself did not end prematurely.
+        // The assessment shows a summary 
         val assessment = it.assessment
         print("Successful result")
     }
@@ -137,20 +137,19 @@ when (status) {
     _365iDResult.StatusType.ClientException -> {
         // This is returned if the SDK encountered an internal error. Report such 
         // issues to 365id as bugs!
-        // We may get a unique message if a client exception happens containing 
-        // the specific issue. Include it in a bug report.
+        // We may get a unique message if a client exception happens containing the
+        // specific issue. Include it in a bug report.
         val usermessage = it.userMessage
         print("Client has thrown an exception")
     }
 
     _365iDResult.StatusType.ServerException -> {
-        // This is returned if there was an issue talking to 365id Cloud 
-        // services. Could be a connectivity issue.
+        // This is returned if there was an issue talking to 365id Cloud services.
+        // Could be a connectivity issue.
         val usermessage = it.userMessage
-        // We may get a unique message from the 365id cloud services when 
-        // this happens, containing a textual description of the backend 
-        // issue. It may be a temporary server connection issue, or a bug 
-        // in our backend.
+        // We may get a unique message from the 365id cloud services when this
+        // happens, containing a textual description of the backend issue. It may
+        // be a temporary server connection issue, or a bug in our backend.
         print("Server has thrown an exception")
     }
 
@@ -160,15 +159,19 @@ when (status) {
 
 }
 
+// Retrieves the result as a json
+result.value = it.asJson()
+
 // Stops the SDK and de-allocates the resources
 stopSdk()
 
 // Navigates back to Home view
 navController.navigate("Home")
 ```
+
 > **:exclamation: NOTICE:** It is important that you call the `stopSdk()` in the callback, to clear up allocated resources.
 
-> **:exclamation: NOTICE:** In order to return to host apps view you will need to pop the stack to release the Sdk view.  
+> **:exclamation: NOTICE:** In order to return to the host apps view, you will have to pop the stack to release the Sdk view.  
 
 <br/>
 
@@ -214,6 +217,10 @@ To demonstrate the function of the SDK, have a look at the [example project](exa
 
 > **⚠️ SECURITY NOTICE:**  The example app uses the license key to directly fetch tokens from the 365id cloud services. This is inherently insecure. We strongly recommend for a production environment to perform this step with a server-to-server call.
 
+
+<br/>
+<br/>
+<br/>
 
 ## Production
 
