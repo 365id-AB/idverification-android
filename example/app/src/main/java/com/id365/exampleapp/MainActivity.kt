@@ -203,7 +203,8 @@ class MainActivity : ComponentActivity() {
 
                     _365iDResult.StatusType.OK -> {
                         // This is returned when a transaction completes successfully 
-                        // Note: This does not mean the user identity or supplied document is verified, only that the transaction process itself did not end prematurely.
+                        // Note: This does not mean the user identity or supplied document is verified, 
+                        // only that the transaction process itself did not end prematurely.
                         // The assessment shows a summary 
                         val assessment = it.assessment
                         print("Successful result")
@@ -215,16 +216,21 @@ class MainActivity : ComponentActivity() {
                     }
 
                     _365iDResult.StatusType.ClientException -> {
-                        // This is returned if the SDK encountered an internal error. Report such issues to 365id as bugs!
-                        // We may get a unique message if a client exception happens containing the specific issue. Include it in a bug report.
+                        // This is returned if the SDK encountered an internal error. Report such 
+                        // issues to 365id as bugs!
+                        // We may get a unique message if a client exception happens containing the
+                        // specific issue. Include it in a bug report.
                         val usermessage = it.userMessage
                         print("Client has thrown an exception")
                     }
 
                     _365iDResult.StatusType.ServerException -> {
-                        // This is returned if there was an issue talking to 365id Cloud services. Could be a connectivity issue.
+                        // This is returned if there was an issue talking to 365id Cloud services.
+                        // Could be a connectivity issue.
                         val usermessage = it.userMessage
-                        // We may get a unique message from the 365id cloud services when this happens, containing a textual description of the backend issue. It may be a temporary server connection issue, or a bug in our backend.
+                        // We may get a unique message from the 365id cloud services when this
+                        // happens, containing a textual description of the backend issue. It may
+                        // be a temporary server connection issue, or a bug in our backend.
                         print("Server has thrown an exception")
                     }
 
@@ -247,13 +253,6 @@ class MainActivity : ComponentActivity() {
             navController.navigate("SDK")
         }
     }
-
-
-//    val callback = (it: _365iDResult) {
-//        result.value = it.asJson()
-//        stopSdk()
-//        navController.popBackStack()
-//    }
 
 
     @Preview(showBackground = true)
