@@ -70,21 +70,14 @@ dependencies {
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation "com.id365.idverification:sdk:0.2.12"
+    implementation "com.id365.idverification:sdk:1.0.4"
     protobuf(project(":protos"))
 }
 
 repositories {
     maven {
-        url "https://gitlab.365id.com/api/v4/projects/105/packages/maven"
-        name "365id GitLab"
-        credentials(HttpHeaderCredentials) {
-            name = "Private-Token"
-            value = project.properties["gitlabPrivateToken"]
-        }
-        authentication {
-            header(HttpHeaderAuthentication)
-        }
+        name = "365id Maven Repository"
+        url = url("https://raw.githubusercontent.com/365id-AB/idverification-android/main/maven/")
     }
     maven {
         name = "iProov Maven"
