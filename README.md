@@ -94,12 +94,12 @@ In order to use the 365id Id Verification SDK it is necessary to follow these st
 
 ### Retrieve a token
 
-Before being able to use the 365id Id Verification SDK, you will need a JWT token to 365id Services. The way of doing that is to make gRPC call using the [Authentication.proto](example\protos\src\main\proto\Protos\Authentication.proto) file to the url `https://frontend-device-ag.int.365id.com:5001`.  
+Before being able to use the 365id Id Verification SDK, you will need a JWT token to 365id Services. The way of doing that is to make gRPC call using the [Authentication.proto](./example/protos/src/main/proto/Protos/Authentication.proto) file to the url `https://frontend-device-ag.int.365id.com:5001`.  
 
 1. `AuthenticateRequest` - Requests a JWT token based on a provided license key, Language Code and a Vendor Id.
 2. `RefreshTokenRequest` - Requests a refreshed token using the refresh token.
 
-The JWT token is valid for 3 minutes, after that you will have to refresh the token using the provided refresh token. In the [TokenRequester.kt](example\app\src\main\java\com\id365\exampleapp\TokenRequester.kt) file you can find how the example app retrieves its token using the license key.
+The JWT token is valid for 3 minutes, after that you will have to refresh the token using the provided refresh token. In the [TokenRequester.kt](./example/app/src/main/java/com/id365/exampleapp/TokenRequester.kt) file you can find how the example app retrieves its token using the license key.
 
 > **⚠️ SECURITY NOTICE:**  In a production app, it is recommended that you obtain the JWT token using a server-to-server call. The example app retrieves it directly for the sake of simplicity.
 
