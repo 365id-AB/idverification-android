@@ -8,7 +8,7 @@
  - [Registration](#registration)
  - [Installation](#installation)
  - [Get started](#get-started)
- - [Sample code](#sample-code)
+ - [Sample project](#sample-project)
  - [Production](#production)
  - [Help & support](#help--support)
 
@@ -22,7 +22,7 @@
 
 The 365id Id Verification SDK enables you to integrate 365id services into your android app. We also support [iOS](https://github.com/365id-AB/idverification-ios).  
 
-The SDK supports identifying and validating ID documents such as passports, ID cards and drivers' licenses, as well as reading the text on the document and automatically mapping these to relevant fields when used in conjunction with our [cloud services](https://365id.com/integrations/?lang=en).
+The SDK supports identifying and validating ID documents such as passports, ID cards and drivers' licenses, as well as reading the text on the document and automatically mapping these to relevant fields when used in conjunction with [365id Integration Service](https://365id.com/integrations/?lang=en).
 
 
 <br/>
@@ -94,7 +94,7 @@ In order to use the 365id Id Verification SDK it is necessary to follow these st
 
 ### Retrieve a token
 
-Before being able to use the 365id Id Verification SDK, you will need a JWT token to 365id Services. The way of doing that is to make gRPC call using the [Authentication.proto](./example/protos/src/main/proto/Protos/Authentication.proto) file to the url `https://frontend-device-ag.int.365id.com:5001`.  
+Before being able to use the 365id Id Verification SDK, you will need a JWT token. The way of doing that is to make gRPC call using the [Authentication.proto](./example/protos/src/main/proto/Protos/Authentication.proto) file to the url `https://frontend-device-ag.int.365id.com:5001`.  
 
 1. `AuthenticateRequest` - Requests a JWT token based on a provided license key, Language Code and a Vendor Id.
 2. `RefreshTokenRequest` - Requests a refreshed token using the refresh token.
@@ -144,10 +144,10 @@ when (status) {
     }
 
     _365iDResult.StatusType.ServerException -> {
-        // This is returned if there was an issue talking to 365id Cloud services.
+        // This is returned if there was an issue talking to 365id Services.
         // Could be a connectivity issue.
         val usermessage = it.userMessage
-        // We may get a unique message from the 365id cloud services when this
+        // We may get a unique message from the 365id Services when this
         // happens, containing a textual description of the backend issue. It may
         // be a temporary server connection issue, or a bug in our backend.
         print("Server has thrown an exception")
@@ -195,7 +195,7 @@ if (startSdk(this.applicationContext, request) {
 <br/>
 
 ### Validation of result
-To validate the result you will have to use an existing or a new integration to 365id cloud. The data returned back contains all the extracted fields along with the captured images and the assessment of the document.
+To validate the result you will have to use an existing or a new integration to 365id Services. The data returned back contains all the extracted fields along with the captured images and the assessment of the document.
 
 Documentation for that integration is not covered here and is only delivered on request, so please contact 365id Support at [support@365id.com](mailto:support@365id.com) for your copy.
 
@@ -206,7 +206,7 @@ Documentation for that integration is not covered here and is only delivered on 
 <br/>
 
 
-## Sample code
+## Sample project
 
 To demonstrate the function of the SDK, have a look at the [example project](example).
 ### Installation
@@ -215,7 +215,7 @@ To demonstrate the function of the SDK, have a look at the [example project](exa
   a. Find the variable  `license` and set it to your license key.  
   b. Find the variable `locationId` and set it to your location id.  
 
-> **⚠️ SECURITY NOTICE:**  The example app uses the license key to directly fetch tokens from the 365id cloud services. This is inherently insecure. We strongly recommend for a production environment to perform this step with a server-to-server call.
+> **⚠️ SECURITY NOTICE:**  The example app uses the license key to directly fetch tokens from the 365id Backend. This is inherently insecure. We strongly recommend for a production environment to perform this step with a server-to-server call.
 
 
 <br/>
@@ -228,31 +228,31 @@ To implement the SDK inside your app, we recommend an implementation that follow
 
 ```mermaid
 sequenceDiagram
-    participant Customer Cloud
+    participant Customer Backend
     participant App
     participant SDK
-    participant 365id Cloud
-    App->>Customer Cloud: Request Token
-    Customer Cloud->>365id Cloud: Request Token using license
-    365id Cloud->>Customer Cloud: App Token
-    Customer Cloud->>App: App Token
+    participant 365id Backend
+    App->>Customer Backend: Request Token
+    Customer Backend->>365id Backend: Request Token using license
+    365id Backend->>Customer Backend: App Token
+    Customer Backend->>App: App Token
     App->>SDK: App Token + Location Data
     loop Process Transaction
-        365id Cloud->>SDK: Provide instructions for user
-        SDK->>365id Cloud: Perform requested steps
+        365id Backend->>SDK: Provide instructions for user
+        SDK->>365id Backend: Perform requested steps
     end
     SDK->>App: Transaction Id and status (Ok or Unsuccessful)
-    App->>Customer Cloud: Transaction Id
-    Customer Cloud->>365id Cloud: Request: Transaction details using Transaction Id
-    365id Cloud->>Customer Cloud: Response: Transaction details
-    Customer Cloud->>App: Decide if user should be considered verified
+    App->>Customer Backend: Transaction Id
+    Customer Backend->>365id Backend: Request: Transaction details using Transaction Id
+    365id Backend->>Customer Backend: Response: Transaction details
+    Customer Backend->>App: Decide if user should be considered verified
 ```
 
 In writing, this can be described as such:
 
-- App requests a token. This can be handled either by the app directly, or as recommended by the diagram, through your cloud services. Requesting the first token requires a license key. Our recommendation is to store this in your cloud service, and use it when requesting an app token for the first time. Subsequent tokens for a specific device can be requested using the existing token and a refresh token.
+- App requests a token. This can be handled either by the app directly, or as recommended by the diagram, through your backend services. Requesting the first token requires a license key. Our recommendation is to store this in your backend, and use it when requesting an app token for the first time. Subsequent tokens for a specific device can be requested using the existing token and a refresh token.
 - App uses the received token to start the SDK, beginning a transaction. The SDK will take over the app until all requested steps have been completed, after which it'll return a summary of the transaction result, alongside a transaction ID.
-- The transaction ID is used to poll 365id services about the details of the transaction. Recommendation here is that your cloud service receives this ID from the App, then makes a decision based on the result received from the 365id API.
+- The transaction ID is used to poll 365id services about the details of the transaction. Recommendation here is that your backend receives this ID from the App, then makes a decision based on the result received from the 365id Backend API.
 
 
 
