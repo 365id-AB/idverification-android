@@ -76,12 +76,12 @@ dependencies {
 
 repositories {
     maven {
-        name = "365id Maven Repository"
-        url = url("https://raw.githubusercontent.com/365id-AB/idverification-android/main/maven/")
+        name "365id Maven Repository"
+        url "https://raw.githubusercontent.com/365id-AB/idverification-android/main/maven/"
     }
     maven {
-        name = "iProov Maven"
-        url = uri("https://raw.githubusercontent.com/iProov/android/master/maven/")
+        name "iProov Maven"
+        url "https://raw.githubusercontent.com/iProov/android/master/maven/"
     }
     google()
     mavenCentral()
