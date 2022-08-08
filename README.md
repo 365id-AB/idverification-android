@@ -1,6 +1,6 @@
 ![365id: Global Id Verification](images/banner.png)
 
-# 365id Id Verification Android SDK 1.0.4
+# 365id Id Verification Android SDK 1.0.7
 
 ## Table of contents
  - [Introduction](#introduction)
@@ -80,7 +80,7 @@ The 365id Id Verification SDK is provided from a Maven repository as a AAR libra
 3. Add the 365id Id Verification SDK to your dependencies in the `build.gradle` file:
       ```gradle
     dependencies {
-        implementation "com.id365.idverification:sdk:1.0.0"
+        implementation "com.id365.idverification:sdk:1.0.7"
     }
     ```
 

@@ -70,7 +70,7 @@ dependencies {
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation "com.id365.idverification:sdk:1.0.4"
+    implementation "com.id365.idverification:sdk:1.0.7"
     protobuf(project(":protos"))
 }
 
