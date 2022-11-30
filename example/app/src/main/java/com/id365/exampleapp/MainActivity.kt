@@ -207,7 +207,7 @@ class MainActivity : ComponentActivity() {
                         // only that the transaction process itself did not end prematurely.
                         // The assessment shows a summary 
                         val assessment = it.assessment
-                        print("Successful result")
+                        print("Verification process completed successfully with status: $assessment")
                     }
 
                     _365iDResult.StatusType.Dismissed -> {
