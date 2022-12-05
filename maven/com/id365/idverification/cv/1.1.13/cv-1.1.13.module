@@ -1,0 +1,104 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.id365.idverification",
+    "module": "cv",
+    "version": "1.1.13",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cv-1.1.13.aar",
+          "url": "cv-1.1.13.aar",
+          "size": 12923058,
+          "sha512": "580f0ab2c6bafe5920101c1cc3f7afab1ff3cc876248dd823b3e4daf57d92ecc7e4e62eac863548c112e7fd17f4899834b274121c86271e51183ce8f27b3d0e4",
+          "sha256": "763d202f8f927d96356fd5b42153b90ef4f4362354250e64f511f18c64f46ea7",
+          "sha1": "a2df979a50482076a5f8e19b68039e7974387efc",
+          "md5": "fa0dc3e9fa965d957880f8dc281e449d"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.10"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.7.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.4.1"
+          }
+        },
+        {
+          "group": "com.google.android.material",
+          "module": "material",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.constraintlayout",
+          "module": "constraintlayout",
+          "version": {
+            "requires": "2.1.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cv-1.1.13.aar",
+          "url": "cv-1.1.13.aar",
+          "size": 12923058,
+          "sha512": "580f0ab2c6bafe5920101c1cc3f7afab1ff3cc876248dd823b3e4daf57d92ecc7e4e62eac863548c112e7fd17f4899834b274121c86271e51183ce8f27b3d0e4",
+          "sha256": "763d202f8f927d96356fd5b42153b90ef4f4362354250e64f511f18c64f46ea7",
+          "sha1": "a2df979a50482076a5f8e19b68039e7974387efc",
+          "md5": "fa0dc3e9fa965d957880f8dc281e449d"
+        }
+      ]
+    }
+  ]
+}
