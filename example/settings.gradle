@@ -1,5 +1,3 @@
-import org.gradle.api.initialization.resolve.RepositoriesMode
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -8,12 +6,18 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         google()
         mavenCentral()
+        maven {
+            name = "365id Maven Repository"
+            url = 'https://raw.githubusercontent.com/365id-AB/idverification-android/main/maven/'
+        }
+        maven {
+            name = "iProov Maven Repository"
+            url = 'https://raw.githubusercontent.com/iProov/android/master/maven/'
+        }
     }
 }
 rootProject.name = "ExampleApp"
 include ':app'
-include ':protos'

@@ -1,6 +1,7 @@
 package com.id365.exampleapp
 
 import android.Manifest.permission
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -26,38 +27,20 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.id365.exampleapp.ui.theme.ExampleAppTheme
-import com.id365.idverification._365iDRequest
-import com.id365.idverification._365iDResult
-import com.id365.idverification.startSdk
-import com.id365.idverification.stopSdk
+import com.id365.idverification.*
 import com.id365.idverification.ui.theme.Id365ScannerSdkTheme
 import com.id365.idverification.views.ScannerSdkView
-import io.grpc.StatusException
-import java.util.*
 
 class MainActivity : ComponentActivity() {
 
     private val token = mutableStateOf("")
     private val result = mutableStateOf("No result generated yet")
 
-    // URL to the 365id frontend for SDK applications
-    private val url = "https://frontend-device-ag.int.365id.com:5001"
+    // To get a valid client secret key, please contact 365id support @ support@365id.com
+    private val clientSecret = "<Insert your client secret key here>"
 
-    // To get a valid license key, please contact 365id support @ support@365id.com
-    private val license = "<Insert your license key here>"
-
-    // Name of location (Optional)
-    private val locationName = "<The name of location>"
-
-    // Location Id, provided by 365id
-    private val locationId = 0
-
-    // A unique identifier for this device, generated randomly here for each session, but
-    // you'll want to create your own unique identifier for each device.
-    private val deviceId = UUID.randomUUID().toString()
-
-    // This requests a token from the 365id backend.
-    private val tokenRequester: TokenRequester by lazy { TokenRequester(url, license, deviceId) }
+    // To get a valid client Id key, please contact 365id support @ support@365id.com
+    private val clientId = "<Insert your client Id key here>"
 
     /**
      * 365id Id Verification Android SDK requires permission to use the camera and access the NFC reader.
@@ -97,7 +80,15 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    fun setViewContent() {
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        Log.d("MainActivity", "Received intent: $intent")
+        intent?.let {
+            sendIntentToSdk(intent)
+        }
+    }
+
+    private fun setViewContent() {
         setContent {
             Id365ScannerSdkTheme {
                 // A surface container using the 'background' color from the theme
@@ -171,13 +162,18 @@ class MainActivity : ComponentActivity() {
      * Each token generated has a lifespan of a few minutes, after which a new one will have to be
      * generated to begin a new transaction.
      */
-    fun requestToken() {
-        try {
-        token.value = tokenRequester.refresh()
-        } catch (e: StatusException) {
-            result.value = "${e.message.toString()} \n\nMake sure the license key is correct"
-        } catch (e: Exception) {
-            result.value = e.message.toString()
+    private fun requestToken() {
+        TokenHandler.getToken(
+            this,
+            clientSecret,
+            clientId
+        ) { newToken: String? ->
+            if (newToken != null) {
+                token.value = newToken
+            }
+            else {
+                token.value = "Make sure the clientSecret/clientId-key is correct"
+            }
         }
     }
 
@@ -188,8 +184,8 @@ class MainActivity : ComponentActivity() {
      * The result in [_365iDResult] contains a TransactionId that you can later double check in
      * your backend to verify the result of the transaction.
      */
-    fun startTransaction(navController: NavController) {
-        val request = _365iDRequest(token.value, locationName, locationId)
+    private fun startTransaction(navController: NavController) {
+        val request = _365iDRequest(token.value)
 
         if (startSdk(this.applicationContext, request) {
                 /**
@@ -253,7 +249,6 @@ class MainActivity : ComponentActivity() {
             navController.navigate("SDK")
         }
     }
-
 
     @Preview(showBackground = true)
     @Composable

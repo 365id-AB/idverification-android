@@ -118,22 +118,24 @@ flowchart LR
 
 The 365id IdVerification SDK is provided from a Maven repository as a AAR library (Android Library Project)
 
-1. Open the `build.gradle` file in your new or existing Android project with which you want to integrate
+1. Open your new or existing Android project with which you want to integrate
 
-2. Add the repositories section to your `build.gradle` file:
-      ```gradle
-    repositories {
-        maven {
-            name = "365id Maven Repository"
-            url = url("https://raw.githubusercontent.com/365id-AB/idverification-android/main/maven/")
-        }
-        // The 365id Id Verification SDK leverages face matching 
-        // technology using iProov (github.com/iProov/android). 
-        // No implementation is required in your app to enable 
-        // this functionality
-        maven {
-            name = "iProov Maven Repository"
-            url = url("https://raw.githubusercontent.com/iProov/android/master/maven/")
+2. Add the maven sections to your `settings.gradle` file:
+    ```gradle
+    dependencyResolutionManagement {
+        repositories {
+            maven {
+                name = "365id Maven Repository"
+                url = url("https://raw.githubusercontent.com/365id-AB/idverification-android/main/maven/")
+            }
+            // The 365id Id Verification SDK leverages face matching 
+            // technology using iProov (github.com/iProov/android). 
+            // No implementation is required in your app to enable 
+            // this functionality
+            maven {
+                name = "iProov Maven Repository"
+                url = url("https://raw.githubusercontent.com/iProov/android/master/maven/")
+            }
         }
     }
     ```
@@ -278,6 +280,21 @@ With a valid token, you can now start the SDK using the `startSDK()` function. `
 
 <br/>
 
+#### Implement the `sendIntentToSdk()` function.
+
+Within the `onNewIntent()` function, you need to add support for sending intents to the SDK.
+An example taken from the example project for kotlin
+```kotlin
+override fun onNewIntent(intent: Intent?) {
+    super.onNewIntent(intent)
+    intent?.let {
+        sendIntentToSdk(intent)
+    }
+}
+```
+
+<br/>
+
 ### The Callback
 
 The callback parameter is the last parameter to `startSDK` and will be called upon completion of a transaction. The callback function takes a `_365iDResult` object containing the transaction id, status for the transaction, summarized assessment and optionally a user message.  
@@ -356,7 +373,7 @@ Upon a successful start of the SDK, switch to the SDK View. Depending on your fr
 In a Jetpack Compose `@Composable` you can use `ScannerSdkView()` directly:
 
 ```kotlin
-val request = _365iDRequest(token, locationName, locationId)
+val request = _365iDRequest(token)
 // Starts the Sdk
 if (startSdk(this.applicationContext, request) {
     // Callback
@@ -417,8 +434,8 @@ To demonstrate the function of the SDK, have a look at the [example project](exa
 ### Installation
 1. Open the `app` project in Android Studio.
 2. Open `MainActivity.kt`.  
-  a. Find the variable  `license` and set it to your license key.  
-  b. Find the variable `locationId` and set it to your location id.  
+  a. Find the variable `clientSecret` and set it to your client secret key.  
+  b. Find the variable `clientId` and set it to your client id.  
 
 > **⚠️ SECURITY NOTICE:**  The Sample App uses the sdk credentials to directly fetch the access token from the 365id Backend. This is inherently insecure. `This is only done in the purpose of demonstration.` We strongly recommend for a production environment to perform this step with a server-to-server call.
 
