@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.id365.idverification:sdk:1.0.19'
+    implementation 'com.id365.idverification:sdk:1.1.7'
     implementation 'com.google.code.gson:gson:2.10'
     implementation 'androidx.compose.material:material:1.3.1'
     implementation 'androidx.navigation:navigation-compose:2.5.3'
