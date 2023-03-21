@@ -143,7 +143,7 @@ The 365id IdVerification SDK is provided from a Maven repository as a AAR librar
       ```gradle
     dependencies {
         ...
-        implementation "com.id365.idverification:sdk:1.0.19"
+        implementation "com.id365.idverification:sdk:1.1.7"
     }
     ```
 
@@ -425,6 +425,24 @@ Documentation for that integration is not covered here and is only delivered on 
 
 <br/>
 <br/>
+
+## White Labeling
+You can customize the SDK´s design with your own colors and logo. Below you see an example of how you can achieve this:
+
+### Jetpack Compose
+With a custom `Material Design theme` you can customize colors, typography and shapes. In the [example project](example/app/src/main/java/com/id365/exampleapp/ui/theme/CustomSdkTheme.kt) we show how you can create one, then you just wrap this theme with the `ScannerSdkView()` like the code below:
+```kotlin
+CustomSdkTheme {
+    ScannerSdkView()
+}
+```
+If you want to use a custom logo, then you add the 'customLogo' parameter to `startSdk()` with a image resource ID:
+```kotlin
+startSdk(applicationContext, request, R.drawable.myCustomLogo) {}
+```
+
+<br/>
+<br/>
 <br/>
 
 
@@ -438,7 +456,6 @@ To demonstrate the function of the SDK, have a look at the [example project](exa
   b. Find the variable `clientId` and set it to your client id.  
 
 > **⚠️ SECURITY NOTICE:**  The Sample App uses the sdk credentials to directly fetch the access token from the 365id Backend. This is inherently insecure. `This is only done in the purpose of demonstration.` We strongly recommend for a production environment to perform this step with a server-to-server call.
-
 
 <br/>
 <br/>
