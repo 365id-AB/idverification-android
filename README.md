@@ -3,7 +3,7 @@
 # 365id Id Verification Android SDK
 
 
-The 365id Id Verification SDK enables you to integrate 365id services into your android app. We also support [iOS](https://github.com/365id-AB/idverification-ios).  
+The 365id Id Verification SDK enables you to integrate 365id services into your android app. We also support [iOS](https://github.com/365id-AB/idverification-ios).
 
 The SDK supports identifying and validating ID documents such as passports, ID cards and drivers' licenses, as well as reading the text on the document and automatically mapping these to relevant fields when used in conjunction with the [365id Integration Service](https://365id.com/integrations/?lang=en).
 
@@ -30,34 +30,34 @@ This is a basic representation of the flow in an App, integrating the 365id IdVe
 flowchart LR
 
    subgraph APP1[APP]
-      
+
       user[The user interaction comes<br> to a point where<br> identification is needed]
       id_begin[The identification flow<br>begins in the App]
       token[An access token<br> is requested from the<br> customer backend]
 
       user --> id_begin
       id_begin --> token
-      
+
    end
 
    subgraph CUSTOMER_BACKEND1[CUSTOMER BACKEND]
-   
+
       request[The customer backend makes<br> a request for an access token]
       backend_365[The customer backend retrieves<br> an access token from the<br> 365id backend]
       response[The access token is<br> delivered back to the App]
 
       request --> backend_365
       backend_365 --> response
-      
+
    end
 
    subgraph APP2[APP]
 
       valid[The app receives the<br> access token]
       startSDK[The app now starts the<br> SDK with the access token]
-      
+
       valid --> startSDK
-      
+
    end
 
    subgraph SDK
@@ -82,7 +82,7 @@ flowchart LR
       contact[The app sends the transaction id<br> to the customer backend]
 
       callback --> contact
-      
+
    end
 
    subgraph CUSTOMER_BACKEND2[CUSTOMER BACKEND]
@@ -128,9 +128,9 @@ The 365id IdVerification SDK is provided from a Maven repository as a AAR librar
                 name = "365id Maven Repository"
                 url = url("https://raw.githubusercontent.com/365id-AB/idverification-android/main/maven/")
             }
-            // The 365id Id Verification SDK leverages face matching 
-            // technology using iProov (github.com/iProov/android). 
-            // No implementation is required in your app to enable 
+            // The 365id Id Verification SDK leverages face matching
+            // technology using iProov (github.com/iProov/android).
+            // No implementation is required in your app to enable
             // this functionality
             maven {
                 name = "iProov Maven Repository"
@@ -153,7 +153,7 @@ The 365id IdVerification SDK is provided from a Maven repository as a AAR librar
 
 ### Declare capabilities
 
-The 365id IdVerification SDK needs access to the camera to perform its' main usecase. Access to the NFC chipset (if present) is also needed for reading certain documents.  
+The 365id IdVerification SDK needs access to the camera to perform its' main usecase. Access to the NFC chipset (if present) is also needed for reading certain documents.
 These capabilities are already declared by the library, and your app will not need to redeclare these, though you may want to provide a rationale for this use case when integrating.
 
 <br/>
@@ -193,11 +193,11 @@ Before being able to use the 365id Id Verification SDK, you will need an access 
 **Url**: https://eu.customer.365id.com
 
 ---
-#### **/api/v1/access_token**  
-*Used for retrieving a new access token using the client id and secret, also known as customer external id and license key*  
+#### **/api/v1/access_token**
+*Used for retrieving a new access token using the client id and secret, also known as customer external id and license key*
 
-POST  
-Request  
+POST
+Request
 
 *Body - application/json*
 ```json
@@ -205,12 +205,12 @@ Request
   "client_id": "string",
   "client_secret": "string"
 }
-```  
+```
 Response
 | Code | Description |
 | ---- | ----------- |
-| 200 | Success |  
-  
+| 200 | Success |
+
 *Body - application/json*
 ```json
 {
@@ -223,8 +223,8 @@ Response
 ```
 | Code | Description |
 | ---- | ----------- |
-| 400 | Bad Request |  
-  
+| 400 | Bad Request |
+
 *Body - application/json*
 ```json
 {
@@ -232,31 +232,31 @@ Response
   "error_description": "string"
 }
 ```
-----  
+----
 
-#### **/api/v1/refresh_token**  
+#### **/api/v1/refresh_token**
 *Used for refreshing an already retrieved access token. The access token can be or almost be expired when making this call*
 
-POST  
-Request  
+POST
+Request
 
 *Header*
 | Key | Value |
 | ----| ----- |
-| Authorization | Bearer \<access_token\> |  
-  
+| Authorization | Bearer \<access_token\> |
+
 *Body - application/json*
 ```json
 {
   "refresh_token": "string"
 }
 ```
-  
-Response  
+
+Response
 | Code | Description |
 | ---- | ----------- |
-| 200 | Success |  
-  
+| 200 | Success |
+
 *Body - application/json*
 ```json
 {
@@ -270,8 +270,8 @@ Response
 
 | Code | Description |
 | ---- | ----------- |
-| 400 | Bad Request |  
-  
+| 400 | Bad Request |
+
 *Body - application/json*
 ```json
 {
@@ -279,11 +279,11 @@ Response
   "error_description": "string"
 }
 ```
----  
+---
 
 The access token is valid for a certain amount of time, after that you will have to refresh the access token using the provided refresh token
 
-> **⚠️ SECURITY NOTICE:**  In a production app, it is recommended that you obtain the JWT token using a server-to-server call. The example app retrieves it directly for the sake of simplicity.  
+> **⚠️ SECURITY NOTICE:**  In a production app, it is recommended that you obtain the JWT token using a server-to-server call. The example app retrieves it directly for the sake of simplicity.
 
 <br/>
 <br/>
@@ -311,7 +311,7 @@ override fun onNewIntent(intent: Intent?) {
 
 ### The Callback
 
-The callback parameter is the last parameter to `startSDK` and will be called upon completion of a transaction. The callback function takes a `_365iDResult` object containing the transaction id, status for the transaction, summarized assessment and optionally a user message.  
+The callback parameter is the last parameter to `startSDK` and will be called upon completion of a transaction. The callback function takes a `_365iDResult` object containing the transaction id, status for the transaction, summarized assessment and optionally a user message.
 
 A callback example taken from the example project for kotlin
 ```kotlin
@@ -325,10 +325,10 @@ val status = it.status
 when (status) {
 
     _365iDResult.StatusType.OK -> {
-        // This is returned when a transaction completes successfully 
-        // Note: This does not mean the user identity or supplied document is verified, 
+        // This is returned when a transaction completes successfully
+        // Note: This does not mean the user identity or supplied document is verified,
         // only that the transaction process itself did not end prematurely.
-        // The assessment shows a summary 
+        // The assessment shows a summary
         val assessment = it.assessment
         print("Verification process completed successfully with status: $assessment")
     }
@@ -339,7 +339,7 @@ when (status) {
     }
 
     _365iDResult.StatusType.ClientException -> {
-        // This is returned if the SDK encountered an internal error. Report such 
+        // This is returned if the SDK encountered an internal error. Report such
         // issues to 365id as bugs!
         // We may get a unique message if a client exception happens containing the
         // specific issue. Include it in a bug report.
@@ -375,13 +375,13 @@ navController.navigate("Home")
 
 > **:exclamation: NOTICE:** It is important that you call the `stopSdk()` in the callback, to clear up allocated resources.
 
-> **:exclamation: NOTICE:** In order to return to the host apps view, you will have to pop the stack to release the Sdk view.  
+> **:exclamation: NOTICE:** In order to return to the host apps view, you will have to pop the stack to release the Sdk view.
 
 <br/>
 
 ### Launch the SDK View
 
-Upon a successful start of the SDK, switch to the SDK View. Depending on your framework there may be different ways of accomplishing this.  
+Upon a successful start of the SDK, switch to the SDK View. Depending on your framework there may be different ways of accomplishing this.
 
 #### Jetpack Compose
 In a Jetpack Compose `@Composable` you can use `ScannerSdkView()` directly:
@@ -440,8 +440,8 @@ Documentation for that integration is not covered here and is only delivered on 
 <br/>
 <br/>
 
-## White Labeling
-You can customize the SDK´s design with your own colors and logo. Below you see an example of how you can achieve this:
+## Custom Theme
+You can customize the SDK theme with your own colors and logo. Below you see an example of how you can achieve this:
 
 ### Jetpack Compose
 With a custom `Material Design theme` you can customize colors, typography and shapes. In the [example project](example/app/src/main/java/com/id365/exampleapp/ui/theme/CustomSdkTheme.kt) we show how you can create one, then you just wrap this theme with the `ScannerSdkView()` like the code below:
@@ -450,10 +450,10 @@ CustomSdkTheme {
     ScannerSdkView()
 }
 ```
-If you want to use a custom logo, then you add the 'customLogo' parameter to `startSdk()` with a image resource ID:
-```kotlin
-startSdk(applicationContext, request, R.drawable.myCustomLogo) {}
-```
+You can also use the `setCustomTheme()` function to apply your custom theme.
+
+__NOTE:__ If you want to use a custom logo, then you need to use the `setCustomTheme()` function with an image resource ID
+
 
 <br/>
 <br/>
@@ -465,9 +465,9 @@ startSdk(applicationContext, request, R.drawable.myCustomLogo) {}
 To demonstrate the function of the SDK, have a look at the [example project](example).
 ### Installation
 1. Open the `app` project in Android Studio.
-2. Open `MainActivity.kt`.  
-  a. Find the variable `clientSecret` and set it to your client secret key.  
-  b. Find the variable `clientId` and set it to your client id.  
+2. Open `MainActivity.kt`.
+  a. Find the variable `clientSecret` and set it to your client secret key.
+  b. Find the variable `clientId` and set it to your client id.
 
 > **⚠️ SECURITY NOTICE:**  The Sample App uses the sdk credentials to directly fetch the access token from the 365id Backend. This is inherently insecure. `This is only done in the purpose of demonstration.` We strongly recommend for a production environment to perform this step with a server-to-server call.
 
@@ -491,7 +491,7 @@ sequenceDiagram
     activate 365id Backend
     365id Backend->>Customer Backend: Access Token + Refresh Token
     deactivate 365id Backend
-    
+
     Customer Backend->>App: Access Token
     deactivate Customer Backend
     App->>SDK: Access Token + Location Data
