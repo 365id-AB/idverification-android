@@ -290,7 +290,7 @@ The access token is valid for a certain amount of time, after that you will have
 
 ### Call the SDK
 
-With a valid token, you can now start the SDK using the `startSDK()` function. `startSDK` takes 3 parameters: An ApplicationContext, a `_365iDRequest` object containing the Token, vendor ID, and location ID, and a callback. The vendor ID is a unique identifier for the device making the request. In our sample app, we generate a random UUID string. You may want to store this in your app preferences, or find another device-unique value to send instead.
+With a valid token, you can now start the SDK using the `start()` function. `start` takes 3 parameters: An ApplicationContext, a `_365iDRequest` object containing the Token, vendor ID, and location ID, and an event handler that'll receive callbacks from the SDK. The vendor ID is a unique identifier for the device making the request. In our sample app, we generate a random UUID string. You may want to store this in your app preferences, or find another device-unique value to send instead.
 
 <br/>
 
@@ -309,75 +309,42 @@ override fun onNewIntent(intent: Intent?) {
 
 <br/>
 
-### The Callback
 
-The callback parameter is the last parameter to `startSDK` and will be called upon completion of a transaction. The callback function takes a `_365iDResult` object containing the transaction id, status for the transaction, summarized assessment and optionally a user message.
 
-A callback example taken from the example project for kotlin
+### Event Handler
+
+The `eventHandler`parameter is the last parameter to `start()` and will be used throughout a transaction to inform the app of key events, including when the SDK is ready to be displayed (`onStarted`), when a transaction is completed (`transactionFinishedSuccessfully` or `transactionFinishedButFailed`, and `retrievedTransactionId`), as well as various error events or premature closure events that you may want to handle in your app.
+
+Example implementation:
 ```kotlin
-/**
- * Callback
- */
+class myEventHandler: IdVerificationEventHandler {
 
-val transactionId = it.transactionId
-val status = it.status
-
-when (status) {
-
-    _365iDResult.StatusType.OK -> {
-        // This is returned when a transaction completes successfully
-        // Note: This does not mean the user identity or supplied document is verified,
-        // only that the transaction process itself did not end prematurely.
-        // The assessment shows a summary
-        val assessment = it.assessment
-        print("Verification process completed successfully with status: $assessment")
+    override fun onStarted() {
+        // Here the SDK has finished initializing and you can safely switch view to show the SDK
+        popSdkView()
     }
 
-    _365iDResult.StatusType.Dismissed -> {
-        // This is returned if the user dismisses the SDK view prematurely.
-        print("User dismissed SDK")
+    override fun onClosed() {
+        // SDK process is now fully closed and all resources cleaned up. 
+        // New transaction can be safely initiated with start() at any point after this callback has triggered
     }
 
-    _365iDResult.StatusType.ClientException -> {
-        // This is returned if the SDK encountered an internal error. Report such
-        // issues to 365id as bugs!
-        // We may get a unique message if a client exception happens containing the
-        // specific issue. Include it in a bug report.
-        val usermessage = it.userMessage
-        print("Client has thrown an exception")
+    override fun onCompleted(result: IdVerificationResult) {
+        // SDK process finished and you can get the `transactionId` from result.
+        // After receiving this callback, you should stop the SDK by calling 'stop()'
     }
 
-    _365iDResult.StatusType.ServerException -> {
-        // This is returned if there was an issue talking to 365id Services.
-        // Could be a connectivity issue.
-        val usermessage = it.userMessage
-        // We may get a unique message from the 365id Services when this
-        // happens, containing a textual description of the backend issue. It may
-        // be a temporary server connection issue, or a bug in our backend.
-        print("Server has thrown an exception")
+    override fun onException(exception: IdVerificationException) {
+        // SDK process did not finish successfully. You can read the type and message from exception.
+        // After receiving this callback, you should stop the SDK by calling 'stop()'
     }
 
-    else ->
-        // This should not occur
-        print("Not supported status type was returned")
-
+    override fun onUserDismissed() {
+        // SDK process finished because the user dismissed the view, by either pressing the close button or performing a "Back" gesture.
+        // After receiving this callback, you should stop the SDK by calling 'stop()'
+    }
 }
-
-// Retrieves the result as a json
-result.value = it.asJson()
-
-// Stops the SDK and de-allocates the resources
-stopSdk()
-
-// Navigates back to Home view
-navController.navigate("Home")
 ```
-
-> **:exclamation: NOTICE:** It is important that you call the `stopSdk()` in the callback, to clear up allocated resources.
-
-> **:exclamation: NOTICE:** In order to return to the host apps view, you will have to pop the stack to release the Sdk view.
-
-<br/>
 
 ### Launch the SDK View
 
@@ -389,9 +356,7 @@ In a Jetpack Compose `@Composable` you can use `ScannerSdkView()` directly:
 ```kotlin
 val request = _365iDRequest(token)
 // Starts the Sdk
-if (startSdk(this.applicationContext, request) {
-    // Callback
-}) {
+if (start(this.applicationContext, request, myEventHandler)) {
     // Navigates to the SDK view
     navController.navigate("SDK")
 }
@@ -411,7 +376,7 @@ fun MainContent() {
 ```
 
 #### Java View
-For a classic Android project, we provide a convenience `getView` function that returns the SDK as an Android View.
+For a legacy Android project, we provide a convenience `getView` function that returns the SDK as an Android View.
 This view can then be added to your layouts like so:
 ```java
 public class SomeActivity extends AppCompatActivity {
@@ -440,20 +405,36 @@ Documentation for that integration is not covered here and is only delivered on 
 <br/>
 <br/>
 
-## Custom Theme
-You can customize the SDK theme with your own colors and logo. Below you see an example of how you can achieve this:
+### Custom Theme
 
-### Jetpack Compose
-With a custom `Material Design theme` you can customize colors, typography and shapes. In the [example project](example/app/src/main/java/com/id365/exampleapp/ui/theme/CustomSdkTheme.kt) we show how you can create one, then you just wrap this theme with the `ScannerSdkView()` like the code below:
+You can use `setCustomTheme()` to apply a specific set of colors.
 ```kotlin
-CustomSdkTheme {
-    ScannerSdkView()
-}
+setCustomTheme(
+    theme = IdVerificationTheme(
+        primary = Color.Purple,
+        background = Color.White,
+        onPrimary = Color.White,
+        secondary = Color.White,
+        onSecondary = Color.Purple,
+        surface = Color.White,
+        onSurface = Color.Purple,
+        secondaryContainer = Color.LightGray,
+        onSecondaryContainer = Color.DarkGray,
+        poweredByLogo = PoweredByLogo.BLACK,
+        appBarLogo = R.drawable.MyAppbarLogo,
+    )
+)
 ```
-You can also use the `setCustomTheme()` function to apply your custom theme.
-
-__NOTE:__ If you want to use a custom logo, then you need to use the `setCustomTheme()` function with an image resource ID
-
+or alternately, if using Material Design 3 you can provide the desired color palette directly:
+```kotlin
+setCustomTheme(
+    theme = IdVerificationTheme(
+        colorScheme = myColorPalette,
+        poweredByLogo = PoweredByLogo.BLACK,
+        appBarLogo = R.drawable.MyAppbarLogo,
+    )
+)
+```
 
 <br/>
 <br/>
@@ -533,6 +514,10 @@ In writing, this can be described as such:
 <br/>
 <br/>
 <br/>
+
+## API
+
+You can find full API documentation here: [https://365id-ab.github.io/idverification-android](https://365id-ab.github.io/idverification-android)
 
 
 ## Help & support
