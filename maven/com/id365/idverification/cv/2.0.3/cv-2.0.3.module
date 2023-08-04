@@ -1,0 +1,83 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.id365.idverification",
+    "module": "cv",
+    "version": "2.0.3",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cv-2.0.3.aar",
+          "url": "cv-2.0.3.aar",
+          "size": 13646445,
+          "sha512": "611ce6b6a678c91a8a370a78962faca713d372b02a7c1924a87dd6b67bfa263acc10f44e6c5f6d11804adda178142df56154c30b9a8777090fda6cc2431dd9b0",
+          "sha256": "80813d5034efa7ecfbb99e9ce5cdce5ffe6b7111e9d5db306ee8410bc4869c2a",
+          "sha1": "861097d76820ed71aca79596a86a2e0b5b225461",
+          "md5": "6ed1dcb551a5f36bde102b1dd6edf93c"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cv-2.0.3.aar",
+          "url": "cv-2.0.3.aar",
+          "size": 13646445,
+          "sha512": "611ce6b6a678c91a8a370a78962faca713d372b02a7c1924a87dd6b67bfa263acc10f44e6c5f6d11804adda178142df56154c30b9a8777090fda6cc2431dd9b0",
+          "sha256": "80813d5034efa7ecfbb99e9ce5cdce5ffe6b7111e9d5db306ee8410bc4869c2a",
+          "sha1": "861097d76820ed71aca79596a86a2e0b5b225461",
+          "md5": "6ed1dcb551a5f36bde102b1dd6edf93c"
+        }
+      ]
+    }
+  ]
+}
