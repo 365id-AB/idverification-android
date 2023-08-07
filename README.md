@@ -143,7 +143,7 @@ The 365id IdVerification SDK is provided from a Maven repository as a AAR librar
       ```gradle
     dependencies {
         ...
-        implementation "com.id365.idverification:sdk:1.1.7"
+        implementation "com.id365.idverification:sdk:1.3.9"
     }
     ```
 
@@ -294,18 +294,17 @@ With a valid token, you can now start the SDK using the `start()` function. `sta
 
 <br/>
 
-#### Implement the `sendIntentToSdk()` function.
+#### Implement the `sendIntent()` function.
 
 Within the `onNewIntent()` function, you need to add support for sending intents to the SDK.
 An example taken from the example project for kotlin
 ```kotlin
 override fun onNewIntent(intent: Intent?) {
     super.onNewIntent(intent)
-    intent?.let {
-        sendIntentToSdk(intent)
-    }
+    IdVerification.sendIntent(intent)
 }
 ```
+This is used to support reading of biometric data using the devices' builtin NFC reader. The IdVerification SDK only listens for the intent `NfcAdapter.ACTION_TAG_DISCOVERED`, and only when the SDK is started.
 
 <br/>
 
@@ -314,6 +313,8 @@ override fun onNewIntent(intent: Intent?) {
 ### Event Handler
 
 The `eventHandler`parameter is the last parameter to `start()` and will be used throughout a transaction to inform the app of key events, including when the SDK is ready to be displayed (`onStarted`), when a transaction is completed (`transactionFinishedSuccessfully` or `transactionFinishedButFailed`, and `retrievedTransactionId`), as well as various error events or premature closure events that you may want to handle in your app.
+
+> **:exclamation: NOTICE:** The SDK may invoke the event handler from *any* thread. Please take this into consideration when you want to invoke APIs that must be run on the Main thread of your app!
 
 Example implementation:
 ```kotlin
@@ -369,14 +370,14 @@ fun MainContent() {
             Home(navController)
         }
         composable("SDK") {
-            ScannerSdkView()
+            IdVerification.ScannerSdkView()
         }
     }
 }
 ```
 
 #### Java View
-For a legacy Android project, we provide a convenience `getView` function that returns the SDK as an Android View.
+For a legacy Android project, `IdVerification` provides a convenience `getView` function that returns the SDK as an Android View.
 This view can then be added to your layouts like so:
 ```java
 public class SomeActivity extends AppCompatActivity {
@@ -387,7 +388,7 @@ public class SomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.root);
-        binding.mainContent.addView(getView(this, null, R.attr.materialThemeOverlay, true));
+        binding.mainContent.addView(IdVerification.getView(this, null, R.attr.materialThemeOverlay, true));
     }
 }
 ```

@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -22,19 +23,25 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.id365.exampleapp.ui.theme.CustomSdkTheme
 import com.id365.exampleapp.ui.theme.ExampleAppTheme
 import com.id365.idverification.*
-import com.id365.idverification.ui.theme.Id365ScannerSdkTheme
+import com.id365.idverification.errors.IdVerificationException
 import com.id365.idverification.views.ScannerSdkView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), IdVerificationEventHandler {
 
     private val token = mutableStateOf("")
     private val result = mutableStateOf("No result generated yet")
+    private val tokenLoading = mutableStateOf(false)
+    private val tokenIsValid = mutableStateOf(false)
 
     // To get a valid client secret key, please contact 365id support @ support@365id.com
     private val clientSecret = "<Insert your client secret key here>"
@@ -42,6 +49,7 @@ class MainActivity : ComponentActivity() {
     // To get a valid client Id key, please contact 365id support @ support@365id.com
     private val clientId = "<Insert your client Id key here>"
 
+    private lateinit var navController: NavHostController
     /**
      * 365id Id Verification Android SDK requires permission to use the camera and access the NFC reader.
      */
@@ -59,7 +67,7 @@ class MainActivity : ComponentActivity() {
                         Log.e("MainActivity", "Missing permission: $perm")
                     }
                     setContent {
-                        Id365ScannerSdkTheme {
+                        CustomSdkTheme {
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -83,14 +91,12 @@ class MainActivity : ComponentActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         Log.d("MainActivity", "Received intent: $intent")
-        intent?.let {
-            sendIntentToSdk(intent)
-        }
+        IdVerification.sendIntent(intent)
     }
 
     private fun setViewContent() {
         setContent {
-            Id365ScannerSdkTheme {
+            CustomSdkTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -104,21 +110,19 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun MainContent() {
-        val navController = rememberNavController()
+        navController = rememberNavController()
         NavHost(navController = navController, startDestination = "Home") {
             composable("Home") {
-                Home(navController)
+                Home()
             }
-            composable("SDK") {
-                ScannerSdkView()
+            composable("Sdk") {
+                IdVerification.ScannerSdkView()
             }
         }
     }
 
     @Composable
-    fun Home(
-        navController: NavController
-    ) {
+    fun Home() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -131,7 +135,7 @@ class MainActivity : ComponentActivity() {
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(10.dp))
-            if (token.value.isEmpty()) Text(
+            if (!tokenIsValid.value) Text(
                 text = "Token is not ready", textAlign = TextAlign.Center,
                 modifier = Modifier.background(color = MaterialTheme.colors.error),
                 color = MaterialTheme.colors.onError
@@ -143,14 +147,18 @@ class MainActivity : ComponentActivity() {
             Spacer(modifier = Modifier.height(40.dp))
             Text(text = "Result: ${result.value}", textAlign = TextAlign.Center)
             Spacer(modifier = Modifier.weight(1f))
+            if (tokenLoading.value){
+                CircularProgressIndicator()
+            }
             Button(
+                enabled = !tokenLoading.value,
                 onClick = { requestToken() }
             ) {
                 Text(text = "Request Token")
             }
             Button(
-                onClick = { startTransaction(navController) },
-                enabled = token.value.isNotEmpty()
+                onClick = { startTransaction() },
+                enabled = tokenIsValid.value
             ) {
                 Text(text = "Start Transaction")
             }
@@ -163,16 +171,20 @@ class MainActivity : ComponentActivity() {
      * generated to begin a new transaction.
      */
     private fun requestToken() {
+        tokenLoading.value = true
         TokenHandler.getToken(
             this,
             clientSecret,
             clientId
         ) { newToken: String? ->
+            tokenLoading.value = false
             if (newToken != null) {
+                tokenIsValid.value = true
                 token.value = newToken
             }
             else {
-                token.value = "Make sure the clientSecret/clientId-key is correct"
+                tokenIsValid.value = false
+                result.value = "Make sure the clientSecret/clientId-key is correct"
             }
         }
     }
@@ -184,70 +196,46 @@ class MainActivity : ComponentActivity() {
      * The result in [_365iDResult] contains a TransactionId that you can later double check in
      * your backend to verify the result of the transaction.
      */
-    private fun startTransaction(navController: NavController) {
-        val request = _365iDRequest(token.value)
+    private fun startTransaction() {
+        val request = IdVerificationRequest(token.value)
 
-        if (startSdk(this.applicationContext, request) {
-                /**
-                 * Callback
-                 */
+        IdVerification.start(this.applicationContext, request, this)
+    }
 
-                val transactionId = it.transactionId
-                val status = it.status
-
-                when (status) {
-
-                    _365iDResult.StatusType.OK -> {
-                        // This is returned when a transaction completes successfully 
-                        // Note: This does not mean the user identity or supplied document is verified, 
-                        // only that the transaction process itself did not end prematurely.
-                        // The assessment shows a summary 
-                        val assessment = it.assessment
-                        print("Verification process completed successfully with status: $assessment")
-                    }
-
-                    _365iDResult.StatusType.Dismissed -> {
-                        // This is returned if the user dismisses the SDK view prematurely.
-                        print("User dismissed SDK")
-                    }
-
-                    _365iDResult.StatusType.ClientException -> {
-                        // This is returned if the SDK encountered an internal error. Report such 
-                        // issues to 365id as bugs!
-                        // We may get a unique message if a client exception happens containing the
-                        // specific issue. Include it in a bug report.
-                        val usermessage = it.userMessage
-                        print("Client has thrown an exception")
-                    }
-
-                    _365iDResult.StatusType.ServerException -> {
-                        // This is returned if there was an issue talking to 365id Cloud services.
-                        // Could be a connectivity issue.
-                        val usermessage = it.userMessage
-                        // We may get a unique message from the 365id cloud services when this
-                        // happens, containing a textual description of the backend issue. It may
-                        // be a temporary server connection issue, or a bug in our backend.
-                        print("Server has thrown an exception")
-                    }
-
-                    else ->
-                        // This should not occur
-                        print("Not supported status type was returned")
-
-                }
-
-                // Retrieves the result as a json
-                result.value = it.asJson()
-
-                // Stops the SDK and de-allocates the resources
-                stopSdk()
-
-            // Navigates back to Home view
+    override fun onClosed() {
+        Log.d("MainActivity", "SDK closed")
+        CoroutineScope(Dispatchers.Main).launch {
             navController.navigate("Home")
-        }) {
-            // Navigates to the SDK view
-            navController.navigate("SDK")
         }
+    }
+
+    override fun onCompleted(result: IdVerificationResult) {
+        //val r = result.asJson()
+        if (result.error != null) {
+            Log.e("MainActivity", "Sdk reported error: ${result.error}")
+        }
+        Log.d("MainActivity", "SDK completed: ${result.transactionId}")
+        this@MainActivity.result.value = "Transaction complete: ${result.transactionId}"
+        IdVerification.stop()
+    }
+
+    override fun onException(exception: IdVerificationException) {
+        Log.e("MainActivity", "Exception ")
+        result.value = "Failed to complete transaction: $exception"
+        IdVerification.stop()
+    }
+
+    override fun onStarted() {
+        Log.d("MainActivity", "SDK started")
+        CoroutineScope(Dispatchers.Main).launch {
+            navController.navigate("Sdk")
+        }
+    }
+
+    override fun onUserDismissed() {
+        Log.d("MainActivity", "SDK was dismissed by user")
+        result.value = "SDK was closed by user"
+        IdVerification.stop()
     }
 
     @Preview(showBackground = true)
