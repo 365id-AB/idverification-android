@@ -1,284 +1,440 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>IdVerificationTheme</title>
     <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../../../styles/style.css" rel="Stylesheet">
-<link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet">
 <link href="../../../../styles/main.css" rel="Stylesheet">
 <link href="../../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <script type="text/javascript" src="../../../../scripts/clipboard.js" async="async"></script>
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
-<div class="navigation-wrapper" id="navigation-wrapper">
-    <div id="leftToggler"><span class="icon-toggler"></span></div>
-    <div class="library-name">
-            <a href="../../../../index.html">
-                    <span>IdVerificationSdk</span>
-            </a>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../../index.html">
+                            IdVerificationSdk
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":IdVerificationSdk:dokkaHtml/release">androidJvm</button>
+        </div>
     </div>
-    <div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
     </div>
-    <div class="pull-right d-flex">
-        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
-    </div>
-</div>
-<div id="container">
-    <div id="leftColumn">
-        <div id="sideMenu"></div>
-    </div>
-    <div id="main">
-<div class="main-content" id="content" pageIds="IdVerificationSdk::com.id365.idverification/IdVerification.IdVerificationTheme///PointingToDeclaration//-1109359996">
-  <div class="breadcrumbs"><a href="../../../../index.html">IdVerificationSdk</a><span class="delimiter">/</span><a href="../../index.html">com.id365.idverification</a><span class="delimiter">/</span><a href="../index.html">IdVerification</a><span class="delimiter">/</span><a href="index.html">IdVerificationTheme</a></div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="IdVerificationSdk::com.id365.idverification/IdVerification.IdVerificationTheme///PointingToDeclaration//-1109359996">
+  <div class="breadcrumbs"><a href="../../../../index.html">IdVerificationSdk</a><span class="delimiter">/</span><a href="../../index.html">com.id365.idverification</a><span class="delimiter">/</span><a href="../index.html">IdVerification</a><span class="delimiter">/</span><span class="current">IdVerificationTheme</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Id</span><wbr></wbr><span>Verification</span><wbr></wbr><span><span>Theme</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">IdVerificationTheme</a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>primary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.primary<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>background<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.background<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>onPrimary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onPrimary<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>appBarLogo<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>R.drawable.ic_logo_color<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>poweredByLogo<span class="token operator">: </span><a href="../-powered-by-logo/index.html">IdVerification.PoweredByLogo</a><span class="token operator"> = </span>PoweredByLogo.STANDARD<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>secondary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.secondary<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>onSecondary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onSecondary<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>secondaryContainer<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.secondaryContainer<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>onSecondaryContainer<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onSecondaryContainer<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>surface<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.surface<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>onSurface<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onSurface<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>showAppBar<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Create a theme for applying to the SDK. The default parameters explain how the colors in a <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a> map to the IdVerification SDK.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">IdVerificationTheme</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>primary<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.primary.toArgb()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>background<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.background.toArgb()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onPrimary<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.onPrimary.toArgb()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>secondary<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.secondary.toArgb()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSecondary<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.onSecondary.toArgb()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>secondaryContainer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.secondaryContainer.toArgb()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSecondaryContainer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.onSecondaryContainer.toArgb()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>surface<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.surface.toArgb()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>onSurface<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.onSurface.toArgb()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>appBarLogo<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>R.drawable.ic_logo_color<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>poweredByLogo<span class="token operator">: </span><a href="../-powered-by-logo/index.html">IdVerification.PoweredByLogo</a><span class="token operator"> = </span>PoweredByLogo.STANDARD<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>showAppBar<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>imageCaptureId3InstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.ImageCaptureId3Instruction)
+        }<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>imageCaptureId1FrontsideInstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.ImageCaptureId1FrontsideInstruction)
+        }<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>imageCaptureId1BacksideInstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.ImageCaptureId1BacksideInstruction)
+        }<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>imageCaptureDocumentInstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.ImageCaptureDocumentInstruction)
+        }<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>imageCaptureLoadingAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            LoadingAnimationView(LoadingViewType.SpinnerWithCard)
+        }<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>nfcInstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.NfcInstruction)
+        }<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>nfcLoadingAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            LoadingAnimationView(LoadingViewType.NFC)
+        }<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>faceMatchLoadingAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            LoadingAnimationView(LoadingViewType.SpinnerWithFace)
+        }<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>genericLoadingAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{ SpinnerView() }</span></span><span class="token punctuation">)</span></div><p class="paragraph">Create a theme for applying to the SDK. The default parameters explain how the colors in a <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a> map to the IdVerification SDK.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>primary</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The main accent color applied to many elements, such as buttons</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>background</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The color applied to the background and tint in the camera views</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>on</span><wbr></wbr><span><span>Primary</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The color applied text in buttons, a contrast to primary</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>app</span><wbr></wbr><span>Bar</span><wbr></wbr><span><span>Logo</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Your preferred logo. Ideal size is 145x40 dp</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>powered</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Logo</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Option for configuring the &quot;Powered by 365id&quot; logo</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>secondary</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The main color applied to the alert box</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>on</span><wbr></wbr><span><span>Secondary</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The text color for the heading text of the alert box</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>secondary</span><wbr></wbr><span><span>Container</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The other color applied to the alert box. Should be a light shade than secondary</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>on</span><wbr></wbr><span>Secondary</span><wbr></wbr><span><span>Container</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The text color applied to the instructional text inside the alert box</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>surface</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The background color applied to the top app bar if used</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>on</span><wbr></wbr><span><span>Surface</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The content color applied to elements in the top app bar if used</p></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>show</span><wbr></wbr><span>App</span><wbr></wbr><span><span>Bar</span></span></u></div></span></div><div><div class="title"><p class="paragraph">If you want to use IdVerification default app bar or not</p></div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="">Parameters</h2>
-      <div data-togglable="Parameters">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>primary</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The main accent color applied to many elements, such as buttons</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>background</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The color applied to the background and tint in the camera views</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>on</span><wbr></wbr><span><span>Primary</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The color applied text in buttons, a contrast to primary</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>app</span><wbr></wbr><span>Bar</span><wbr></wbr><span><span>Logo</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Your preferred logo. Ideal size is 145x40 dp</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>powered</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Logo</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Option for configuring the &quot;Powered by 365id&quot; logo</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>secondary</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The main color applied to the alert box</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>on</span><wbr></wbr><span><span>Secondary</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The text color for the heading text of the alert box</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>secondary</span><wbr></wbr><span><span>Container</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The other color applied to the alert box. Should be a light shade than secondary</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>on</span><wbr></wbr><span>Secondary</span><wbr></wbr><span><span>Container</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The text color applied to the instructional text inside the alert box</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>surface</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The background color applied to the top app bar if used</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>on</span><wbr></wbr><span><span>Surface</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The content color applied to elements in the top app bar if used</p></div></div></div></div></div><div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>show</span><wbr></wbr><span>App</span><wbr></wbr><span><span>Bar</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">If you want to use IdVerification default app bar or not</p></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="1150553929%2FConstructors%2F-1109359996" anchor-label="IdVerificationTheme" id="1150553929%2FConstructors%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-id-verification-theme.html"><span>Id</span><wbr></wbr><span>Verification</span><wbr></wbr><span><span>Theme</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1150553929%2FConstructors%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-id-verification-theme.html"><span class="token function">IdVerificationTheme</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="-536387106%2FConstructors%2F-1109359996" anchor-label="IdVerificationTheme" id="-536387106%2FConstructors%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-id-verification-theme.html"><span>Id</span><wbr></wbr><span>Verification</span><wbr></wbr><span><span>Theme</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-536387106%2FConstructors%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-id-verification-theme.html"><span class="token function">IdVerificationTheme</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;appBarLogo<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>R.drawable.ic_logo_color<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;poweredByLogo<span class="token operator">: </span><a href="../-powered-by-logo/index.html">IdVerification.PoweredByLogo</a><span class="token operator"> = </span>PoweredByLogo.STANDARD<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;showAppBar<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;colorScheme<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a><span class="token operator"> = </span>lightColorPalette</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="-1540530058%2FConstructors%2F-1109359996" anchor-label="IdVerificationTheme" id="-1540530058%2FConstructors%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-id-verification-theme.html"><span>Id</span><wbr></wbr><span>Verification</span><wbr></wbr><span><span>Theme</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1540530058%2FConstructors%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-id-verification-theme.html"><span class="token function">IdVerificationTheme</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;primary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.primary<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;background<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.background<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;onPrimary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onPrimary<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;appBarLogo<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>R.drawable.ic_logo_color<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;poweredByLogo<span class="token operator">: </span><a href="../-powered-by-logo/index.html">IdVerification.PoweredByLogo</a><span class="token operator"> = </span>PoweredByLogo.STANDARD<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;secondary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.secondary<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;onSecondary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onSecondary<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;secondaryContainer<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.secondaryContainer<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;onSecondaryContainer<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onSecondaryContainer<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;surface<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.surface<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;onSurface<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onSurface<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;showAppBar<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1525724571%2FConstructors%2F-1109359996" anchor-label="IdVerificationTheme" id="-1525724571%2FConstructors%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-id-verification-theme.html"><span>Id</span><wbr></wbr><span>Verification</span><wbr></wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1525724571%2FConstructors%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">appBarLogo<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>R.drawable.ic_logo_color<span class="token punctuation">, </span></span><span class="parameter ">poweredByLogo<span class="token operator">: </span><a href="../-powered-by-logo/index.html">IdVerification.PoweredByLogo</a><span class="token operator"> = </span>PoweredByLogo.STANDARD<span class="token punctuation">, </span></span><span class="parameter ">showAppBar<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">colorScheme<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a><span class="token operator"> = </span>lightColorPalette</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">primary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.primary<span class="token punctuation">, </span></span><span class="parameter ">background<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.background<span class="token punctuation">, </span></span><span class="parameter ">onPrimary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onPrimary<span class="token punctuation">, </span></span><span class="parameter ">secondary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.secondary<span class="token punctuation">, </span></span><span class="parameter ">onSecondary<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onSecondary<span class="token punctuation">, </span></span><span class="parameter ">secondaryContainer<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.secondaryContainer<span class="token punctuation">, </span></span><span class="parameter ">onSecondaryContainer<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onSecondaryContainer<span class="token punctuation">, </span></span><span class="parameter ">surface<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.surface<span class="token punctuation">, </span></span><span class="parameter ">onSurface<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator"> = </span>lightColorPalette.onSurface<span class="token punctuation">, </span></span><span class="parameter ">appBarLogo<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>R.drawable.ic_logo_color<span class="token punctuation">, </span></span><span class="parameter ">poweredByLogo<span class="token operator">: </span><a href="../-powered-by-logo/index.html">IdVerification.PoweredByLogo</a><span class="token operator"> = </span>PoweredByLogo.STANDARD<span class="token punctuation">, </span></span><span class="parameter ">showAppBar<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">primary<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.primary.toArgb()<span class="token punctuation">, </span></span><span class="parameter ">background<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.background.toArgb()<span class="token punctuation">, </span></span><span class="parameter ">onPrimary<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.onPrimary.toArgb()<span class="token punctuation">, </span></span><span class="parameter ">secondary<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.secondary.toArgb()<span class="token punctuation">, </span></span><span class="parameter ">onSecondary<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.onSecondary.toArgb()<span class="token punctuation">, </span></span><span class="parameter ">secondaryContainer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.secondaryContainer.toArgb()<span class="token punctuation">, </span></span><span class="parameter ">onSecondaryContainer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.onSecondaryContainer.toArgb()<span class="token punctuation">, </span></span><span class="parameter ">surface<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.surface.toArgb()<span class="token punctuation">, </span></span><span class="parameter ">onSurface<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>lightColorPalette.onSurface.toArgb()<span class="token punctuation">, </span></span><span class="parameter ">appBarLogo<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>R.drawable.ic_logo_color<span class="token punctuation">, </span></span><span class="parameter ">poweredByLogo<span class="token operator">: </span><a href="../-powered-by-logo/index.html">IdVerification.PoweredByLogo</a><span class="token operator"> = </span>PoweredByLogo.STANDARD<span class="token punctuation">, </span></span><span class="parameter ">showAppBar<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">imageCaptureId3InstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.ImageCaptureId3Instruction)
+        }<span class="token punctuation">, </span></span><span class="parameter ">imageCaptureId1FrontsideInstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.ImageCaptureId1FrontsideInstruction)
+        }<span class="token punctuation">, </span></span><span class="parameter ">imageCaptureId1BacksideInstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.ImageCaptureId1BacksideInstruction)
+        }<span class="token punctuation">, </span></span><span class="parameter ">imageCaptureDocumentInstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.ImageCaptureDocumentInstruction)
+        }<span class="token punctuation">, </span></span><span class="parameter ">imageCaptureLoadingAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            LoadingAnimationView(LoadingViewType.SpinnerWithCard)
+        }<span class="token punctuation">, </span></span><span class="parameter ">nfcInstructionAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            PlaceHolderInstructionView(IdVerificationAnimation.NfcInstruction)
+        }<span class="token punctuation">, </span></span><span class="parameter ">nfcLoadingAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            LoadingAnimationView(LoadingViewType.NFC)
+        }<span class="token punctuation">, </span></span><span class="parameter ">faceMatchLoadingAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{
+            LoadingAnimationView(LoadingViewType.SpinnerWithFace)
+        }<span class="token punctuation">, </span></span><span class="parameter ">genericLoadingAnimationView<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{ SpinnerView() }</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="42573793%2FProperties%2F-1109359996" anchor-label="appBarLogo" id="42573793%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="app-bar-logo.html"><span>app</span><wbr></wbr><span>Bar</span><wbr></wbr><span><span>Logo</span></span></a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="42573793%2FProperties%2F-1109359996" anchor-label="appBarLogo" id="42573793%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="app-bar-logo.html"><span>app</span><wbr></wbr><span>Bar</span><wbr></wbr><span><span>Logo</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="42573793%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="42573793%2FProperties%2F-1109359996" anchor-label="appBarLogo" id="42573793%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="app-bar-logo.html">appBarLogo</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="app-bar-logo.html">appBarLogo</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2056024368%2FProperties%2F-1109359996" anchor-label="background" id="-2056024368%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="background.html"><span><span>background</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="background.html"><span><span>background</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2056024368%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="-2056024368%2FProperties%2F-1109359996" anchor-label="background" id="-2056024368%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="background.html">background</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="background.html">background</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+<a data-name="-1462462137%2FProperties%2F-1109359996" anchor-label="faceMatchLoadingAnimationView" id="-1462462137%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="face-match-loading-animation-view.html"><span>face</span><wbr></wbr><span>Match</span><wbr></wbr><span>Loading</span><wbr></wbr><span>Animation</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1462462137%2FProperties%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="face-match-loading-animation-view.html">faceMatchLoadingAnimationView</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1590028536%2FProperties%2F-1109359996" anchor-label="genericLoadingAnimationView" id="1590028536%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="generic-loading-animation-view.html"><span>generic</span><wbr></wbr><span>Loading</span><wbr></wbr><span>Animation</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1590028536%2FProperties%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="generic-loading-animation-view.html">genericLoadingAnimationView</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1779331837%2FProperties%2F-1109359996" anchor-label="imageCaptureDocumentInstructionAnimationView" id="1779331837%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="image-capture-document-instruction-animation-view.html"><span>image</span><wbr></wbr><span>Capture</span><wbr></wbr><span>Document</span><wbr></wbr><span>Instruction</span><wbr></wbr><span>Animation</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1779331837%2FProperties%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="image-capture-document-instruction-animation-view.html">imageCaptureDocumentInstructionAnimationView</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2114307064%2FProperties%2F-1109359996" anchor-label="imageCaptureId1BacksideInstructionAnimationView" id="2114307064%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="image-capture-id1-backside-instruction-animation-view.html"><span>image</span><wbr></wbr><span>Capture</span><wbr></wbr><span>Id1Backside</span><wbr></wbr><span>Instruction</span><wbr></wbr><span>Animation</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2114307064%2FProperties%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="image-capture-id1-backside-instruction-animation-view.html">imageCaptureId1BacksideInstructionAnimationView</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1552017458%2FProperties%2F-1109359996" anchor-label="imageCaptureId1FrontsideInstructionAnimationView" id="-1552017458%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="image-capture-id1-frontside-instruction-animation-view.html"><span>image</span><wbr></wbr><span>Capture</span><wbr></wbr><span>Id1Frontside</span><wbr></wbr><span>Instruction</span><wbr></wbr><span>Animation</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1552017458%2FProperties%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="image-capture-id1-frontside-instruction-animation-view.html">imageCaptureId1FrontsideInstructionAnimationView</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-62525612%2FProperties%2F-1109359996" anchor-label="imageCaptureId3InstructionAnimationView" id="-62525612%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="image-capture-id3-instruction-animation-view.html"><span>image</span><wbr></wbr><span>Capture</span><wbr></wbr><span>Id3Instruction</span><wbr></wbr><span>Animation</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-62525612%2FProperties%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="image-capture-id3-instruction-animation-view.html">imageCaptureId3InstructionAnimationView</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="591614470%2FProperties%2F-1109359996" anchor-label="imageCaptureLoadingAnimationView" id="591614470%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="image-capture-loading-animation-view.html"><span>image</span><wbr></wbr><span>Capture</span><wbr></wbr><span>Loading</span><wbr></wbr><span>Animation</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="591614470%2FProperties%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="image-capture-loading-animation-view.html">imageCaptureLoadingAnimationView</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="718527734%2FProperties%2F-1109359996" anchor-label="nfcInstructionAnimationView" id="718527734%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="nfc-instruction-animation-view.html"><span>nfc</span><wbr></wbr><span>Instruction</span><wbr></wbr><span>Animation</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="718527734%2FProperties%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="nfc-instruction-animation-view.html">nfcInstructionAnimationView</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1255971108%2FProperties%2F-1109359996" anchor-label="nfcLoadingAnimationView" id="1255971108%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="nfc-loading-animation-view.html"><span>nfc</span><wbr></wbr><span>Loading</span><wbr></wbr><span>Animation</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1255971108%2FProperties%2F-1109359996"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="nfc-loading-animation-view.html">nfcLoadingAnimationView</a><span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a> </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-1869378215%2FProperties%2F-1109359996" anchor-label="onPrimary" id="-1869378215%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="on-primary.html"><span>on</span><wbr></wbr><span><span>Primary</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-primary.html"><span>on</span><wbr></wbr><span><span>Primary</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1869378215%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="-1869378215%2FProperties%2F-1109359996" anchor-label="onPrimary" id="-1869378215%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="on-primary.html">onPrimary</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="on-primary.html">onPrimary</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1241928025%2FProperties%2F-1109359996" anchor-label="onSecondary" id="-1241928025%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="on-secondary.html"><span>on</span><wbr></wbr><span><span>Secondary</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary.html"><span>on</span><wbr></wbr><span><span>Secondary</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1241928025%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="-1241928025%2FProperties%2F-1109359996" anchor-label="onSecondary" id="-1241928025%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="on-secondary.html">onSecondary</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="on-secondary.html">onSecondary</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1750651602%2FProperties%2F-1109359996" anchor-label="onSecondaryContainer" id="1750651602%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="on-secondary-container.html"><span>on</span><wbr></wbr><span>Secondary</span><wbr></wbr><span><span>Container</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-secondary-container.html"><span>on</span><wbr></wbr><span>Secondary</span><wbr></wbr><span><span>Container</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1750651602%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="1750651602%2FProperties%2F-1109359996" anchor-label="onSecondaryContainer" id="1750651602%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="on-secondary-container.html">onSecondaryContainer</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="on-secondary-container.html">onSecondaryContainer</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-871959282%2FProperties%2F-1109359996" anchor-label="onSurface" id="-871959282%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="on-surface.html"><span>on</span><wbr></wbr><span><span>Surface</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface.html"><span>on</span><wbr></wbr><span><span>Surface</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-871959282%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="-871959282%2FProperties%2F-1109359996" anchor-label="onSurface" id="-871959282%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="on-surface.html">onSurface</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="on-surface.html">onSurface</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-131747274%2FProperties%2F-1109359996" anchor-label="poweredByLogo" id="-131747274%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="powered-by-logo.html"><span>powered</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Logo</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="powered-by-logo.html"><span>powered</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Logo</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-131747274%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="-131747274%2FProperties%2F-1109359996" anchor-label="poweredByLogo" id="-131747274%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="powered-by-logo.html">poweredByLogo</a><span class="token operator">: </span><a href="../-powered-by-logo/index.html">IdVerification.PoweredByLogo</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="powered-by-logo.html">poweredByLogo</a><span class="token operator">: </span><a href="../-powered-by-logo/index.html">IdVerification.PoweredByLogo</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="449315610%2FProperties%2F-1109359996" anchor-label="primary" id="449315610%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="primary.html"><span><span>primary</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary.html"><span><span>primary</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="449315610%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="449315610%2FProperties%2F-1109359996" anchor-label="primary" id="449315610%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="primary.html">primary</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="primary.html">primary</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2065188824%2FProperties%2F-1109359996" anchor-label="secondary" id="-2065188824%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="secondary.html"><span><span>secondary</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary.html"><span><span>secondary</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2065188824%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="-2065188824%2FProperties%2F-1109359996" anchor-label="secondary" id="-2065188824%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="secondary.html">secondary</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="secondary.html">secondary</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="858188401%2FProperties%2F-1109359996" anchor-label="secondaryContainer" id="858188401%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="secondary-container.html"><span>secondary</span><wbr></wbr><span><span>Container</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-container.html"><span>secondary</span><wbr></wbr><span><span>Container</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="858188401%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="858188401%2FProperties%2F-1109359996" anchor-label="secondaryContainer" id="858188401%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="secondary-container.html">secondaryContainer</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="secondary-container.html">secondaryContainer</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1835039857%2FProperties%2F-1109359996" anchor-label="showAppBar" id="-1835039857%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="show-app-bar.html"><span>show</span><wbr></wbr><span>App</span><wbr></wbr><span><span>Bar</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="show-app-bar.html"><span>show</span><wbr></wbr><span>App</span><wbr></wbr><span><span>Bar</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1835039857%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="-1835039857%2FProperties%2F-1109359996" anchor-label="showAppBar" id="-1835039857%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="show-app-bar.html">showAppBar</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="show-app-bar.html">showAppBar</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1446734543%2FProperties%2F-1109359996" anchor-label="surface" id="1446734543%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a>
-        <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="surface.html"><span><span>surface</span></span></a></div>
+          <div class="table-row" data-filterable-current=":IdVerificationSdk:dokkaHtml/release" data-filterable-set=":IdVerificationSdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface.html"><span><span>surface</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1446734543%2FProperties%2F-1109359996"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><a data-name="1446734543%2FProperties%2F-1109359996" anchor-label="surface" id="1446734543%2FProperties%2F-1109359996" data-filterable-set=":IdVerificationSdk:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="surface.html">surface</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":IdVerificationSdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="surface.html">surface</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -288,11 +444,12 @@ if(savedDarkMode === true){
   </div>
 </div>
       <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>

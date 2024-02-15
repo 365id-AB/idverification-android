@@ -1,1 +1,1 @@
-sourceset_dependencies='{":IdVerificationSdk:dokkaHtml/androidTestRelease":[],":IdVerificationSdk:dokkaHtml/debug":[],":IdVerificationSdk:dokkaHtml/main":[],":IdVerificationSdk:dokkaHtml/release":[],":IdVerificationSdk:dokkaHtml/testFixtures":[],":IdVerificationSdk:dokkaHtml/testFixturesDebug":[],":IdVerificationSdk:dokkaHtml/testFixturesRelease":[]}'
+sourceset_dependencies='{":IdVerificationSdk:dokkaHtml/debug":[],":IdVerificationSdk:dokkaHtml/main":[],":IdVerificationSdk:dokkaHtml/release":[]}'
