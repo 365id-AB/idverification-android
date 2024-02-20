@@ -143,7 +143,7 @@ The 365id IdVerification SDK is provided from a Maven repository as a AAR librar
       ```gradle
     dependencies {
         ...
-        implementation "com.id365.idverification:sdk:1.3.9"
+        implementation "com.id365.idverification:sdk:2.1.3"
     }
     ```
 
@@ -423,9 +423,37 @@ setCustomTheme(
         onSecondaryContainer = Color.DarkGray,
         poweredByLogo = PoweredByLogo.BLACK,
         appBarLogo = R.drawable.MyAppbarLogo,
+        animations = Animations(),
     )
 )
 ```
+
+You can use `Animations()` to set custom animations for preparation, loading and instructions.
+```kotlin
+Animations(
+    prepareid3
+    prepareId1Frontside
+    prepareId1Backside
+    prepareDocument
+    prepareNfc
+    prepareFacematch
+    instructionId3
+    instructionId1Frontside
+    instructionId1Backside
+    instructionDocument
+    instructionNfc
+    loadingImageCapture
+    loadingNfc
+    loadingFacematch
+    loadingGeneric
+)
+```
+
+- The prepare animations are shown before the step is to be performed.
+- The instruction animations are shown during the step.
+- The loading animations are shown after the step is performed.
+
+
 or alternately, if using Material Design 3 you can provide the desired color palette directly:
 ```kotlin
 setCustomTheme(

@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.material3.Card
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -17,11 +18,14 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -29,6 +33,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.id365.exampleapp.ui.theme.CustomSdkTheme
 import com.id365.exampleapp.ui.theme.ExampleAppTheme
+import com.id365.exampleapp.ui.theme.animations.DifferentExampleLoadingSpinner
+import com.id365.exampleapp.ui.theme.animations.ExampleLoadingSpinner
 import com.id365.idverification.*
 import com.id365.idverification.errors.IdVerificationException
 import com.id365.idverification.views.ScannerSdkView
@@ -42,6 +48,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
     private val result = mutableStateOf("No result generated yet")
     private val tokenLoading = mutableStateOf(false)
     private val tokenIsValid = mutableStateOf(false)
+    private var documentType: IdVerification.DocumentType = IdVerification.DocumentType.DOCUMENT
 
     // To get a valid client secret key, please contact 365id support @ support@365id.com
     private val clientSecret = "<Insert your client secret key here>"
@@ -121,8 +128,11 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
         }
     }
 
+
+
     @Composable
     fun Home() {
+        val documentTypeDialogVisible = remember { mutableStateOf(false) }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -157,12 +167,27 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
                 Text(text = "Request Token")
             }
             Button(
-                onClick = { startTransaction() },
+                onClick = { startTransaction(documentType) },
                 enabled = tokenIsValid.value
             ) {
                 Text(text = "Start Transaction")
             }
+            Button(
+                enabled = tokenIsValid.value,
+                onClick = { documentTypeDialogVisible.value = true}
+            ) {
+                Text(text = "Choose Document Type")
+            }
             Spacer(modifier = Modifier.height(20.dp))
+        }
+        if (documentTypeDialogVisible.value){
+            Dialog(onDismissRequest = {documentTypeDialogVisible.value = false}) {
+                Card(
+                    shape = androidx.compose.material3.MaterialTheme.shapes.small
+                ) {
+                    DocumentTypeView()
+                }
+            }
         }
     }
 
@@ -190,16 +215,67 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
     }
 
     /**
-     * We start the SDK by calling the [startSdk] function. Once we have confirmation the app is
-     * started, we switch to the SDK main view in [ScannerSdkView]. We pop the backstack in the callback
+     * We start the SDK by calling the [start] function. Once we have confirmation the app is
+     * started, we switch to the SDK main view in [IdVerificationView]. We pop the backstack in the callback
      * to return to the home screen.
-     * The result in [_365iDResult] contains a TransactionId that you can later double check in
+     * The result in [IdVerificationResult] contains a TransactionId that you can later double check in
      * your backend to verify the result of the transaction.
      */
-    private fun startTransaction() {
+    private fun startTransaction(documentType: IdVerification.DocumentType) {
+
+        /**
+         * An example of how you can pick and choose what animations you want to use in the SDK.
+         * This is done by overriding the default animations set in the SDK.
+         */
+        val theme = IdVerification.IdVerificationTheme(
+            animations = IdVerification.Animations(
+                prepareId3 = { ExampleLoadingSpinner() },
+                loadingGeneric = { DifferentExampleLoadingSpinner() },
+                loadingImageCapture = { DifferentExampleLoadingSpinner() }
+            )
+        )
+        IdVerification.setCustomTheme(theme)
+
         val request = IdVerificationRequest(token.value)
 
-        IdVerification.start(this.applicationContext, request, this)
+        IdVerification.start(this.applicationContext, request, eventHandler = this, documentType = documentType)
+    }
+
+    /**
+     * This view demonstrates the different document types you can choose from.
+     * Choosing a document type will impact the ViewFinder size in the SDK, as well as the information displayed during the id verification process.
+     * Starting the SDK without choosing a document type will set document type to its default value [IdVerification.DocumentType.DOCUMENT].
+     */
+    @Composable
+    fun DocumentTypeView() {
+        Box(modifier = Modifier
+            .background(color = Color.DarkGray)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(all = 10.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
+            )
+            {
+                Text(
+                    style = MaterialTheme.typography.h5,
+                    text = "Choose which type of document you want to scan.",
+                    textAlign = TextAlign.Center,
+                    color = Color.White
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                for(t in IdVerification.DocumentType.entries) {
+                    Button(onClick = {
+                        startTransaction(t)
+                    }) {
+                        Text(text = "$t")
+                    }
+                }
+            }
+        }
+
     }
 
     override fun onClosed() {
