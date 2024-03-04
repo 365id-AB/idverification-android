@@ -37,7 +37,6 @@ import com.id365.exampleapp.ui.theme.animations.DifferentExampleLoadingSpinner
 import com.id365.exampleapp.ui.theme.animations.ExampleLoadingSpinner
 import com.id365.idverification.*
 import com.id365.idverification.errors.IdVerificationException
-import com.id365.idverification.views.ScannerSdkView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -55,6 +54,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
 
     // To get a valid client Id key, please contact 365id support @ support@365id.com
     private val clientId = "<Insert your client Id key here>"
+
 
     private lateinit var navController: NavHostController
     /**
@@ -123,7 +123,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
                 Home()
             }
             composable("Sdk") {
-                IdVerification.ScannerSdkView()
+                IdVerification.IdVerificationView()
             }
         }
     }
@@ -230,8 +230,8 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
         val theme = IdVerification.IdVerificationTheme(
             animations = IdVerification.Animations(
                 prepareId3 = { ExampleLoadingSpinner() },
-                loadingGeneric = { DifferentExampleLoadingSpinner() },
-                loadingImageCapture = { DifferentExampleLoadingSpinner() }
+                loadingGeneric = { ExampleLoadingSpinner() },
+                loadingImageCapture = { ExampleLoadingSpinner() }
             )
         )
         IdVerification.setCustomTheme(theme)
