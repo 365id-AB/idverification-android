@@ -55,7 +55,6 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
     // To get a valid client Id key, please contact 365id support @ support@365id.com
     private val clientId = "<Insert your client Id key here>"
 
-
     private lateinit var navController: NavHostController
     /**
      * 365id Id Verification Android SDK requires permission to use the camera and access the NFC reader.

@@ -408,63 +408,13 @@ Documentation for that integration is not covered here and is only delivered on 
 
 ### Custom Theme
 
-You can use `setCustomTheme()` to apply a specific set of colors.
-```kotlin
-setCustomTheme(
-    theme = IdVerificationTheme(
-        primary = Color.Purple,
-        background = Color.White,
-        onPrimary = Color.White,
-        secondary = Color.White,
-        onSecondary = Color.Purple,
-        surface = Color.White,
-        onSurface = Color.Purple,
-        secondaryContainer = Color.LightGray,
-        onSecondaryContainer = Color.DarkGray,
-        poweredByLogo = PoweredByLogo.BLACK,
-        appBarLogo = R.drawable.MyAppbarLogo,
-        animations = Animations(),
-    )
-)
-```
 
-You can use `Animations()` to set custom animations for preparation, loading and instructions.
-```kotlin
-Animations(
-    prepareid3
-    prepareId1Frontside
-    prepareId1Backside
-    prepareDocument
-    prepareNfc
-    prepareFacematch
-    instructionId3
-    instructionId1Frontside
-    instructionId1Backside
-    instructionDocument
-    instructionNfc
-    loadingImageCapture
-    loadingNfc
-    loadingFacematch
-    loadingGeneric
-)
-```
+Before calling `Idverification.start()` you can customize the SDK colors, logo and animations by using the function `IdVerification.setCustomTheme()`. 
 
-- The prepare animations are shown before the step is to be performed.
-- The instruction animations are shown during the step.
-- The loading animations are shown after the step is performed.
+You can replace the animations with your own custom animations or static images.
+ 
 
-
-or alternately, if using Material Design 3 you can provide the desired color palette directly:
-```kotlin
-setCustomTheme(
-    theme = IdVerificationTheme(
-        colorScheme = myColorPalette,
-        poweredByLogo = PoweredByLogo.BLACK,
-        appBarLogo = R.drawable.MyAppbarLogo,
-    )
-)
-```
-
+For more information on how to do this, check out the [custom theme documentation](CUSTOMTHEME.md)
 <br/>
 <br/>
 <br/>
