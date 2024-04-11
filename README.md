@@ -344,6 +344,26 @@ class myEventHandler: IdVerificationEventHandler {
         // SDK process finished because the user dismissed the view, by either pressing the close button or performing a "Back" gesture.
         // After receiving this callback, you should stop the SDK by calling 'stop()'
     }
+    
+    override fun onDocumentFeedback(documentType: DocumentType, countryCode: String) {
+        // Callback received after the document identification process.
+        // This callback will provide early feedback regarding the outcome of the document identification.
+    }
+
+    override fun onNfcFeedback(nfcFeedback: NfcFeedback, expiryDate: String) {
+        // Callback received after the nfc process.
+        // This callback will provide early feedback regarding the reading of the nfc chip.
+    }
+
+    override fun onFaceMatchFeedback(faceMatchFeedback: FaceMatchFeedback) {
+        // Callback received after the facematch step.
+        // This callback will provide early feedback regarding the facematch.
+    }
+
+    override fun onTransactionCreated(transactionId: String) {
+        // Callback received after a transaction has been created.
+        // This callback will provide the transactionId of the transaction.
+    }
 }
 ```
 

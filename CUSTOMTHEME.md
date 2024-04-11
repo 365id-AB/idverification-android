@@ -1,27 +1,33 @@
 ### Custom Theme
  
 You can use `IdVerification.setCustomTheme()` to apply a specific set of colors.  
-Most of the parameters of this function are optional (except `poweredByLogo` and `showAppBar`), so you can use only those that suits you. Below you see an example of how you can use this function:
+Most of the parameters of this function are optional (except `poweredByLogo`), so you can use only those that suits you. Below you see an example of how you can use this function:
 
 ```kotlin
 setCustomTheme(
     theme = IdVerificationTheme(
         primary = Color.Purple,
-        background = Color.White,
         onPrimary = Color.White,
-        secondary = Color.White,
-        onSecondary = Color.Purple,
-        surface = Color.White,
-        onSurface = Color.Purple,
-        surfaceVariant = Color.Black,
-        primaryContainer = Color.White,
-        onPrimaryContainer = Color.Green,
+        primaryContainer = Color.LightPurple,
+        
+        secondary = Color.Gray,
+        onSecondary = Color.White,
         secondaryContainer = Color.LightGray,
         onSecondaryContainer = Color.DarkGray,
-        tertiary = Color.Blue,
+        
+        tertiary = Color.Purple,
         onTertiary = Color.MiddleGray,
+        tertiaryContainer = Color.LightPurple,
+        onTertiaryContainer = Color.White,
+        
+        surface = Color.White,
+        onSurface = Color.Black,
+        surfaceVariant = Color.LightGray,
+        onSurfaceVariant = Color.DarkGray,
+        inverseSurface = Color.Black,
+        inverseOnSurface = Color.White,
+        
         poweredByLogo = PoweredByLogo.BLACK,
-        appBarLogo = R.drawable.MyAppbarLogo,
         animations = Animations(),
     )
 )
@@ -42,22 +48,19 @@ Below you will find images showing which color variables are applied to certain 
 <br/>
 
 ## Information View
-<img src="images/infoview.png" width="500" height="500">
+<img src="images/docsinformationview.png" width="500">
 
 ## Camera View
-<img src="images/cameraview.png" width="500" height="500">
+<img src="images/docscameraview.png" width="500">
 
-## NFC view (android)
-<img src="images/nfcandroidview.png" width="500" height="500">
-
-## NFC view (iOS)
-<img src="images/nfciosview.png" width="500" height="500">
+## NFC view
+<img src="images/docsnfcview.png" width="500">
 
 ## iProov view
-<img src="images/iproovview.png" width="500" height="500">
+<img src="images/docsfacematchview.png" width="500">
 
 ## Wait view
-<img src="images/waitview.png" width="500" height="500">  
+<img src="images/docswaitview.png" width="500">  
 
 <br/>
 

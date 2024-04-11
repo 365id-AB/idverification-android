@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
     private val result = mutableStateOf("No result generated yet")
     private val tokenLoading = mutableStateOf(false)
     private val tokenIsValid = mutableStateOf(false)
-    private var documentType: IdVerification.DocumentType = IdVerification.DocumentType.DOCUMENT
+    private var documentSizeType: IdVerification.DocumentSizeType = IdVerification.DocumentSizeType.DOCUMENT
 
     // To get a valid client secret key, please contact 365id support @ support@365id.com
     private val clientSecret = "<Insert your client secret key here>"
@@ -103,10 +103,10 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
     private fun setViewContent() {
         setContent {
             CustomSdkTheme {
-                // A surface container using the 'background' color from the theme
+                // A surface container using the 'surface' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.surface
                 ) {
                     MainContent()
                 }
@@ -166,7 +166,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
                 Text(text = "Request Token")
             }
             Button(
-                onClick = { startTransaction(documentType) },
+                onClick = { startTransaction(documentSizeType) },
                 enabled = tokenIsValid.value
             ) {
                 Text(text = "Start Transaction")
@@ -220,7 +220,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
      * The result in [IdVerificationResult] contains a TransactionId that you can later double check in
      * your backend to verify the result of the transaction.
      */
-    private fun startTransaction(documentType: IdVerification.DocumentType) {
+    private fun startTransaction(documentSizeType: IdVerification.DocumentSizeType) {
 
         /**
          * An example of how you can pick and choose what animations you want to use in the SDK.
@@ -237,7 +237,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
 
         val request = IdVerificationRequest(token.value)
 
-        IdVerification.start(this.applicationContext, request, eventHandler = this, documentType = documentType)
+        IdVerification.start(this.applicationContext, request, eventHandler = this, documentSizeType = documentSizeType)
     }
 
     /**
@@ -265,7 +265,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
                     color = Color.White
                 )
                 Spacer(modifier = Modifier.height(10.dp))
-                for(t in IdVerification.DocumentType.entries) {
+                for(t in IdVerification.DocumentSizeType.entries) {
                     Button(onClick = {
                         startTransaction(t)
                     }) {
@@ -311,6 +311,22 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
         Log.d("MainActivity", "SDK was dismissed by user")
         result.value = "SDK was closed by user"
         IdVerification.stop()
+    }
+
+    override fun onDocumentFeedback(documentType: DocumentType, countryCode: String) {
+        Log.d("MainActivity", "onDocumentFeedback")
+    }
+
+    override fun onNfcFeedback(nfcFeedback: NfcFeedback, expiryDate: String) {
+        Log.d("MainActivity", "onNfcFeedback")
+    }
+
+    override fun onFaceMatchFeedback(faceMatchFeedback: FaceMatchFeedback) {
+        Log.d("MainActivity", "onFaceMatchFeedback")
+    }
+
+    override fun onTransactionCreated(transactionId: String) {
+        Log.d("MainActivity", "onTransactionCreated")
     }
 
     @Preview(showBackground = true)
