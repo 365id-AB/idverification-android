@@ -2,7 +2,7 @@ package com.id365.exampleapp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -17,7 +17,7 @@ fun CustomSdkTheme(
     content: @Composable () -> Unit)
 {
     val customColors = if (darkTheme) {
-        darkColors(
+        darkColorScheme(
             primary = Color(0xff702f9a),
             onPrimary = Color(0xffffffff),
             secondary = Color(0xffdcdcdc),
@@ -30,7 +30,7 @@ fun CustomSdkTheme(
             onSurface = Color(0xff702f9a)
         )
     } else {
-        lightColors(
+        darkColorScheme(
             primary = Color(0xff702f9a),
             onPrimary = Color(0xffffffff),
             secondary = Color(0xffdcdcdc),
@@ -45,28 +45,28 @@ fun CustomSdkTheme(
     }
 
     val customTypography = Typography(
-        body1 = TextStyle(
+        bodyMedium = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Light,
             fontSize = 14.sp,
             lineHeight = 24.sp,
         ),
-        h6 = TextStyle(
+        titleMedium = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Bold,
             fontSize = 18.sp
         ),
-        caption = TextStyle(
+        labelLarge = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Bold,
             fontSize = 14.sp
         ),
-        subtitle1 = TextStyle(
+        titleSmall = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Light,
             fontSize = 14.sp
         ),
-        subtitle2 = TextStyle(
+        headlineSmall = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Light,
             fontSize = 14.sp
@@ -80,7 +80,7 @@ fun CustomSdkTheme(
     )
 
     MaterialTheme(
-        colors = customColors,
+        colorScheme = customColors,
         typography = customTypography,
         shapes = customShapes,
         content = content
