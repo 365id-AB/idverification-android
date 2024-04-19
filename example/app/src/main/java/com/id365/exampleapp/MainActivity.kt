@@ -316,7 +316,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
         Log.d("MainActivity", "onNfcFeedback")
     }
 
-    override fun onFaceMatchFeedback(faceMatchFeedback: FaceMatchFeedback) {
+    override fun onFaceMatchFeedback(faceMatchFeedback: FacematchFeedback) {
         Log.d("MainActivity", "onFaceMatchFeedback")
     }
 
