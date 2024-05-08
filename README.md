@@ -294,6 +294,16 @@ With a valid token, you can now start the SDK using the `start()` function. `sta
 
 <br/>
 
+### Document size type selection
+
+The `documentSizeType`-parameter is an optional parameter to `start()` and with this you will be able to select the document size.
+Currently, Android SDK supports four types of document size that is id1, id3, document and odd.
+Selecting a document size type does not force the user to only scan that kind of document but rather encourages the user to scan that type of document by adjusting animations and other UI elements to hint the user to scan that specific type of document.
+
+Example of how to start the SDK with a specific document size type selected:
+```kotlin
+IdVerification.start(this.applicationContext, request, eventHandler = this, documentSizeType = IdVerification.DocumentSizeType.DOCUMENT)
+```
 #### Implement the `sendIntent()` function.
 
 Within the `onNewIntent()` function, you need to add support for sending intents to the SDK.

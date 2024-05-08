@@ -51,16 +51,22 @@ Below you will find images showing which color variables are applied to certain 
 <img src="images/docsinformationview.png" width="500">
 
 ## Camera View
-<img src="images/docscameraview.png" width="500">
+<img src="images/imagecaptureview.png" width="500">
 
 ## NFC view
 <img src="images/docsnfcview.png" width="500">
 
 ## iProov view
-<img src="images/docsfacematchview.png" width="500">
+<img src="images/facematchcameraview.png" width="500">
 
 ## Wait view
 <img src="images/docswaitview.png" width="500">  
+
+## Odd sized camera view
+<img src="images/oddsizedcameraview.png" width="500">  
+
+## Odd sized document captured view
+<img src="images/oddsizedcapturedview.png" width="500">  
 
 <br/>
 
@@ -70,12 +76,14 @@ Animations(
     prepareid3
     prepareId1Frontside
     prepareId1Backside
+    prepareOddSizedDocument
     prepareDocument
     prepareNfc
     prepareFacematch
     instructionId3
     instructionId1Frontside
     instructionId1Backside
+    instructionOddSizedDocument
     instructionDocument
     instructionNfc
     loadingImageCapture
