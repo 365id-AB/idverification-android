@@ -78,14 +78,24 @@ Animations(
     prepareId1Backside
     prepareOddSizedDocument
     prepareDocument
+    
+    @Deprecated("This parameter is being phased out")
     prepareNfc
+    prepareId1Nfc
+    prepareId3Nfc
+    prepareDocumentNfc
     prepareFacematch
     instructionId3
     instructionId1Frontside
     instructionId1Backside
-    instructionOddSizedDocument
     instructionDocument
+    instructionOddSizedDocument
+    
+    @Deprecated("This parameter is being phased out")
     instructionNfc
+    instructionId1Nfc
+    instructionId3Nfc
+    instructionDocumentNfc
     loadingImageCapture
     loadingNfc
     loadingFacematch
@@ -95,7 +105,9 @@ Animations(
 
 - The prepare animations are shown before the step is to be performed.
 - The instruction animations are shown during the step.
-- The loading animations are shown after the step is performed.  
+- The loading animations are shown after the step is performed.
+- `prepareNfc` animation will override `prepareId1Nfc`, `prepareId3Nfc` and `prepareDocumentNfc`
+- `instructionNfc` animation will override `instructionId1Nfc`, `instructionId3Nfc` and `instructionDocumentNfc`
 
 <br/>
 
