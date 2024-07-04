@@ -13,7 +13,7 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 
 class Communicator(
-    private val baseUrl: String = "https://eu.customer.365id.com/api/v1"
+    private val baseUrl: String = "https://global-customer-frontend.365id.com/api/v1/"
 ) {
     private val client = HttpClient(CIO) {
         install(HttpTimeout)

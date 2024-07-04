@@ -190,7 +190,7 @@ In order to use the 365id Id Verification SDK it is necessary to follow the step
 Before being able to use the 365id Id Verification SDK, you will need an access token and to get that you will need to make a Rest API call with your client id and secret. If you don't have the credentials, please contact us at [info@365id.com](mailto:info@365id.com). Once you have received the credentials you will be able to request an access token. If the access token has expired you don't have to request a new one, all you have to do is refresh it using the refresh_token endpoint.
 
 
-**Url**: https://eu.customer.365id.com
+**Url**: https://global-customer-frontend.365id.com
 
 ---
 #### **/api/v1/access_token**
