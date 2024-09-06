@@ -532,3 +532,8 @@ You can find full API documentation here: [https://365id-ab.github.io/idverifica
 ## Help & support
 
 For additional help, please contact [support@365id.com](mailto:support@365id.com).
+
+## Important Notices
+
+> [!NOTE]
+> If you are running your application in debug mode you will not be able to achieve a face match.
