@@ -103,8 +103,8 @@ flowchart LR
 
 ## Requirements
 
-- Android API level 24 (Android 7.0) and above
-- Compilation target 33+
+- Android API level 26 (Android 8.0) and above
+- Compilation target 34+
 - AndroidX
 
 
