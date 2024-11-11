@@ -1,5 +1,9 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/-id-verification-sdk/[root]/index.html
+$dokka.location:/NfcTaskPayload///PointingToDeclaration/-id-verification-sdk/[root]/-nfc-task-payload/index.html
+$dokka.location:/NfcTaskPayload/NfcTaskPayload/#kotlin.Int/PointingToDeclaration/-id-verification-sdk/[root]/-nfc-task-payload/-nfc-task-payload.html
+$dokka.location:/NfcTaskPayload/retryAttempt/#/PointingToDeclaration/-id-verification-sdk/[root]/-nfc-task-payload/retry-attempt.html
 $dokka.location:com.id365.idverification.errors////PointingToDeclaration/-id-verification-sdk/com.id365.idverification.errors/index.html
 $dokka.location:com.id365.idverification.errors/IdVerificationClientException///PointingToDeclaration/-id-verification-sdk/com.id365.idverification.errors/-id-verification-client-exception/index.html
 $dokka.location:com.id365.idverification.errors/IdVerificationClientException/exception/#/PointingToDeclaration/-id-verification-sdk/com.id365.idverification.errors/-id-verification-client-exception/exception.html
