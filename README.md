@@ -226,6 +226,19 @@ Example of how to start the SDK with a specific document size type selected:
 ```kotlin
 IdVerification.start(this.applicationContext, request, eventHandler = this, documentSizeType = IdVerification.DocumentSizeType.DOCUMENT)
 ```
+
+### Modules To Skip
+
+The `skipModules`-parameter is an optional parameter to start() and with this you will be able to skip various identification processes, also known as modules.
+The input type for this parameter is IdVerification.SkipModules which is a class that has a constructor that takes a list of enum values. Here is an example of how to use the `skipModules`-parameter:
+
+```kotlin
+IdVerification.start(
+    // Populate skipModules like this in the start function.
+    skipModules = listOf(IdVerification.SkipModule.NFC, IdVerification.SkipModule.FACE_MATCH),
+)
+```
+
 #### Implement the `sendIntent()` function.
 
 Within the `onNewIntent()` function, you need to add support for sending intents to the SDK.
