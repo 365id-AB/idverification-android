@@ -26,6 +26,8 @@ setCustomTheme(
         onSurfaceVariant = Color.DarkGray,
         inverseSurface = Color.Black,
         inverseOnSurface = Color.White,
+
+        surfaceContainer = Color.lightGray,
         
         poweredByLogo = PoweredByLogo.BLACK,
         animations = Animations(),
@@ -49,6 +51,9 @@ Below you will find images showing which color variables are applied to certain 
 
 ## Information View
 <img src="images/docsinformationview.png" width="500">
+
+## Information Warning View
+<img src="images/warning-view.png" width="500">
 
 ## Camera View
 <img src="images/imagecaptureview.png" width="500">
