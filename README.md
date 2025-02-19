@@ -82,20 +82,6 @@ These capabilities are already declared by the library, and your app will not ne
 <br/>
 <br/>
 
-### Logging and error handling
-
-The 365id IdVerification SDK uses Sentry for logging and error handling.
-
-Currently Sentry does not have support for running more than one instance at a time, or change the DSN during runtime, therefore, when the SDK starts it performs a check to see if an instance of Sentry is already running, and if that is the case it wont run Sentry.
-
-If your app have an instance of Sentry running, the logs will be sent to your Sentry project. If your app does not use Sentry this wont be an issue.
-
-To avoid getting our logs we suggest that your app exits Sentry just before the SDK starts and reinstantiate your Sentry right after the SDK exits.
-
-<br/>
-<br/>
-<br/>
-
 ## Sample Application
 
 Please note there is a [Sample Application](example) written with Kotlin and Jetpack Compose that demonstrates one way of integrating the SDK, available in this repository.
@@ -384,6 +370,22 @@ For more information on how to do this, check out the [custom theme documentatio
 <br/>
 <br/>
 
+## Log
+
+### What data are we collecting
+
+We are not, during any stage, collecting the users PII (Personal Identifiable Information). That includes, but are not limited to; email addresses, user names, phone number etc.
+
+#### Logging
+
+For logging we are collecting the following data to help us find and fix problems in our SDK:
+
+- SDK version
+- Stacktraces
+
+<br/>
+<br/>
+<br/>
 
 ## Run the sample project
 
