@@ -161,6 +161,9 @@ $dokka.location:com.id365.idverification/NfcFeedback///PointingToDeclaration/-i
 $dokka.location:com.id365.idverification/NfcFeedback/entries/#/PointingToDeclaration/-id-verification-sdk/com.id365.idverification/-nfc-feedback/entries.html
 $dokka.location:com.id365.idverification/NfcFeedback/valueOf/#kotlin.String/PointingToDeclaration/-id-verification-sdk/com.id365.idverification/-nfc-feedback/value-of.html
 $dokka.location:com.id365.idverification/NfcFeedback/values/#/PointingToDeclaration/-id-verification-sdk/com.id365.idverification/-nfc-feedback/values.html
+$dokka.location:com.id365.idverification/OtelConfig///PointingToDeclaration/-id-verification-sdk/com.id365.idverification/-otel-config/index.html
+$dokka.location:com.id365.idverification/OtelConfig/OTEL_API_KEY/#/PointingToDeclaration/-id-verification-sdk/com.id365.idverification/-otel-config/-o-t-e-l_-a-p-i_-k-e-y.html
+$dokka.location:com.id365.idverification/OtelConfig/OTEL_ENDPOINT/#/PointingToDeclaration/-id-verification-sdk/com.id365.idverification/-otel-config/-o-t-e-l_-e-n-d-p-o-i-n-t.html
 com.id365.idverification
 com.id365.idverification.errors
 
