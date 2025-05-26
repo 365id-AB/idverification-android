@@ -381,6 +381,13 @@ We are not, during any stage, collecting the users PII (Personal Identifiable In
 For logging we are collecting the following data to help us find and fix problems in our SDK:
 
 - SDK version
+- Vendor id
+- Device model
+- Language
+- Country code
+- Os version
+- Platform
+- Transaction Id
 - Stacktraces
 
 <br/>
