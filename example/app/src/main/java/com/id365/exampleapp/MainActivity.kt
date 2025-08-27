@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -116,6 +117,18 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
     @Composable
     fun MainContent() {
         navController = rememberNavController()
+
+        LaunchedEffect(Unit) {
+            viewModel.closedEvent.collect {
+                // Make sure you don’t navigate if you’re already on Home
+                if (navController.currentDestination?.route != "Home") {
+                    navController.navigate("Home") {
+                        popUpTo("Home") { inclusive = true } // Optional: clear backstack
+                    }
+                }
+            }
+        }
+
         NavHost(navController = navController, startDestination = "Home") {
             composable("Home") {
                 Home()
@@ -125,7 +138,6 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
             }
         }
     }
-
 
     @Composable
     fun TokenStatusMessage() {
@@ -273,14 +285,11 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
     }
 
     override fun onClosed() {
-        Log.d("MainActivity", "SDK closed")
-        CoroutineScope(Dispatchers.Main).launch {
-            navController.navigate("Home")
-        }
+        Log.i("MainActivity", "IdVerification SDK was closed")
+        viewModel.onClosed()
     }
 
     override fun onCompleted(result: IdVerificationResult) {
-        //val r = result.asJson()
         if (result.error != null) {
             Log.e("MainActivity", "Sdk reported error: ${result.error}")
         }
@@ -290,7 +299,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
     }
 
     override fun onException(exception: IdVerificationException) {
-        Log.e("MainActivity", "Exception ")
+        Log.e("MainActivity", "Exception: $exception")
         viewModel.result.value = "Failed to complete transaction: $exception"
         IdVerification.stop()
     }
@@ -321,7 +330,7 @@ class MainActivity : ComponentActivity(), IdVerificationEventHandler {
     }
 
     override fun onTransactionCreated(transactionId: String) {
-        Log.d("MainActivity", "onTransactionCreated")
+        Log.d("MainActivity", "onTransactionCreated: $transactionId")
     }
 
     @Preview(showBackground = true)

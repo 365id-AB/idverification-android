@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.id365.exampleapp.AppConfiguration
 import com.id365.exampleapp.communication.Communicator
 import com.id365.exampleapp.communication.Token
@@ -11,6 +12,8 @@ import com.id365.idverification.IdVerification
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.concurrent.timer
@@ -24,6 +27,8 @@ class ViewModel @Inject constructor() :ViewModel() {
     val tokenIsValid = mutableStateOf(false)
     val documentSizeType = mutableStateOf(IdVerification.DocumentSizeType.DOCUMENT)
     private val communicator = Communicator()
+    private val _onClosedEvent = MutableSharedFlow<Unit>()
+    val closedEvent = _onClosedEvent.asSharedFlow()
 
     init {
         timer(initialDelay=10000L, period=10000L) {
@@ -91,4 +96,7 @@ class ViewModel @Inject constructor() :ViewModel() {
 
     }
 
+    fun onClosed() {
+        viewModelScope.launch { _onClosedEvent.emit(Unit) }
+    }
 }
