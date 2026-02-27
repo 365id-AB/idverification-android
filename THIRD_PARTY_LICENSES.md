@@ -339,7 +339,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 **Used by 1 dependency:**
 
-- com.iproov.sdk:iproov:10.4.0
+- com.iproov.sdk:iproov:11.1.0
 
 ### License Information
 
